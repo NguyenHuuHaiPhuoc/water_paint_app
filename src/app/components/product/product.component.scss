@@ -1,0 +1,18 @@
+.list-product li{
+    list-style-type: none;
+    padding-top: 20px;
+}
+.list-product li a:hover{
+    text-decoration: underline !important;
+}
+.list-product a, p{
+    color: #06465B;
+}
+.card-body{
+    background-color: #06465B;
+}
+.card-body span a{
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+}

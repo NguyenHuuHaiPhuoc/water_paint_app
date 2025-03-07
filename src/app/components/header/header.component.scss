@@ -2,18 +2,28 @@
     display: flex;
     gap:5rem;
 }
-
+#fixNav{
+    width: 100% !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid #06465B;
+}
 .logo img{
     margin: 0;
     padding: 0;
     width: 150px;
     height: 150px;
 }
-
+.banner{
+    margin-top: 9.3rem !important;
+}
 .banner img{
-   max-width: 100%;
+   max-width: 1510px;
    width: 100%;
    max-height: 60rem;
    height: 30rem;
-   margin: 0 -5px;
+   margin: 0px;
 }

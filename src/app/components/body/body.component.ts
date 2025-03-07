@@ -8,7 +8,7 @@ import { BackToTopComponent } from '../back_to_top/back-to-top.component';
   standalone: true,
   imports: [
     RouterOutlet,
-    BackToTopComponent
+    // BackToTopComponent
   ],
   templateUrl: './body.component.html',
   styleUrl: './body.component.scss'
