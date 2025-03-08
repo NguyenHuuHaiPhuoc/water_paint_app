@@ -4,7 +4,13 @@
     right: 45px;
     bottom: 45px;
     z-index: 99;
+    background-color: #06465B !important;
+    padding: 1rem;
+    border-radius: 18px !important;
+}
+.back-to-top:hover{
+    cursor: pointer;
 }
 .back-to-top i{
-    margin-left: -4px;
+    color: #fff !important;
 }

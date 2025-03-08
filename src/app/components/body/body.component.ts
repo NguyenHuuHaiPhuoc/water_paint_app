@@ -8,7 +8,7 @@ import { BackToTopComponent } from '../back_to_top/back-to-top.component';
   standalone: true,
   imports: [
     RouterOutlet,
-    // BackToTopComponent
+    BackToTopComponent
   ],
   templateUrl: './body.component.html',
   styleUrl: './body.component.scss'
@@ -23,8 +23,8 @@ export class BodyComponent {
 
     }
 
-    public path():string {
-        const path = this.location.path();
-        return path;
+    public path() {
+        const path = this.location.path().split("/");
+        return path[path.length -1];
     }
 }

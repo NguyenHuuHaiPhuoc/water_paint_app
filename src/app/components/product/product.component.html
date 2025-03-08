@@ -2,24 +2,28 @@
     <div class="row mt-md-4">
         <div class="col-md-3">
             <ul class="list-product ">
-                <li class="text-uppercase fs-5 fw-bold border border-top-0 border-start-0 border-end-0"><p>sản phẩm</p></li>
-                <li class="text-uppercase fs-5 "><a class="fw-bold text-decoration-none" href="muc-in-an/san-pham/danh-muc-san-pham">keo công nghiệp & phủ bóng</a></li>
-                <li class="text-uppercase fs-5 "><a class="fw-bold text-decoration-none" href="">nguyên liệu sơn</a></li>
-                <li class="text-uppercase fs-5 ">
-                    <a class="fw-bold text-decoration-none" href="">hóa chất mực in</a>
-                    <ul>
-                        @if(listProduct.type == 3){
-                            @if(listProduct.products.length > 0){
-                                @for (i of listProduct.products; track $index) {
-                                    <li class="text-capitalize fs-6">
-                                        <a class="text-decoration-none" href="muc-in-an/san-pham/mat-hang-san-pham">{{i.product_name}}</a>
-                                    </li>
+                @if(listProduct.length > 0) {
+                    @for (listP of listProduct; track $index) {
+                        <li class="text-uppercase fs-5 ">
+                            <a class="fw-bold text-decoration-none" href="muc-in-an/danh-muc/{{listP.path}}">{{listP.product_name}}</a>
+                            <ul>
+                                @if(listP.path == getPath()){
+                                    @if(list_product_item.length > 0){
+                                        @for (i of list_product_item; track $index) {
+                                            @if(i.product_id == listP.id) {
+                                                <li class="text-capitalize fs-6">
+                                                    <a class="text-decoration-none" href="muc-in-an/san-pham/{{i.path}}">
+                                                        {{i.name}}
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                    }
                                 }
-                            }
-                        }
-                    </ul>
-                </li>
-                <li class="text-uppercase fs-5 "><a class="fw-bold text-decoration-none" href="">Bột màu hữu cơ</a></li>
+                            </ul>
+                        </li>
+                    }
+                }
             </ul>
         </div>
         <div class="col-md-9">

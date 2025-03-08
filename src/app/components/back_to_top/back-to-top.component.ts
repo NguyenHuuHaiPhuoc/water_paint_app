@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, HostListener } from "@angular/core";
 
 @Component({
     selector: 'app-back-to-top',
@@ -8,6 +8,13 @@ import { Component } from "@angular/core";
 })
 
 export class BackToTopComponent{
+    public isVisible: boolean = false;
+    @HostListener('window:scroll',[])
+    onWindowScroll() {
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop 
+                                || document.body.scrollTop || 0;
+        this.isVisible = scrollPosition > 300;
+    }
     public backToTop () {
         window.scroll({ 
             top: 0, 
