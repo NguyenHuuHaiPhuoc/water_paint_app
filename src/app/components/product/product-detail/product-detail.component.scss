@@ -2,13 +2,16 @@
     border: 1px solid #06465B;
     color: #06465B;
 }
-.product_same_type a{
+.product_same_type{
+    margin-top: -3.5rem;
+}
+.product_same_type-item a{
     color: #06465B;
 }
-.product_same_type:hover{
+.product_same_type-item:hover{
     background-color: #06465B;
 }
-.product_same_type:hover a{
+.product_same_type-item:hover a{
     color: #fff;
 }
 .label{

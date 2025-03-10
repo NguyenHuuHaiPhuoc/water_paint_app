@@ -1,5 +1,11 @@
 <div class="layout">
-    <app-header></app-header>
-    <app-body></app-body>
-    <app-footer></app-footer>
+    @if(path() == 'admin'
+    ){
+        <app-admin></app-admin>
+    }
+    @else{
+        <app-header></app-header>
+        <app-body></app-body>
+        <app-footer></app-footer>
+    }
 </div>
