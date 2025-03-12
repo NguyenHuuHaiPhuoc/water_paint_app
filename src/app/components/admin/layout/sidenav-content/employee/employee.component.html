@@ -1,0 +1,147 @@
+<div class="row">
+    <div class="col-xl-3 col-md-6">
+        <div class="card text-white mb-4">
+            <ul class="list-group">
+                <li class="bg-primary fs-5 p-md-1 fw-bold text-uppercase text-center" aria-current="true">
+                    Danh sách nhân viên</li>
+                <li class="list-group-item">
+                    <div>
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search"
+                                aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit"><i
+                                    class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                </li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">A fourth item</li>
+                <li class="list-group-item">And a fifth one</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xl-9 col-md-6">
+        <div class="card mb-2">
+            <div class="card-header text-primary fs-5 text-uppercase fw-bold text-center">nhân viên</div>
+            <div class="card-body">
+                <form action="" class="row g-3">
+                    <div class="col-md-4 d-md-flex flex-column gap-md-3">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="full_name" class="form-label">Tên nhân viên</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="full_name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="staff_id" class="form-label">Mã nhân viên</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="staff_id">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="gender" class="form-label">Giới tính</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="gender">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="birthday" class="form-label">Ngày sinh</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="birthday"
+                                    placeholder="VD: 01/01/2000">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="hometown" class="form-label">Quê quán</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="hometown">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="nationnality" class="form-label">Quốc tịch</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="nationnality">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-md-flex flex-column gap-md-3">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="card_id" class="form-label">Số CCCD</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="card_id">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="card_date" class="form-label">Ngày cấp CCCD</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="card_date"
+                                    placeholder="VD: 01/01/2000" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="card_where" class="form-label">Nơi cấp CCCD</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="card_where">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="tax_code" class="form-label">Mã số thuế</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="tax_code">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="tax_code_date" class="form-label">Ngày cấp MST</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="tax_code_date"
+                                    placeholder="VD: 01/01/2000" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-md-flex flex-column gap-md-3">
+                        <div class="avatar">
+                            <img src="assets/imgs/no-avatar.jpg" alt="No avatar" />
+                        </div>
+                        <div class="action_avatar mx-auto d-flex gap-md-3">
+                            <button type="button" class="btn btn-info">Tải ảnh <i
+                                    class="fas fa-upload ms-md-2"></i></button>
+                            <button type="button" class="btn btn-warning">Xóa <i
+                                    class="fas fa-trash-alt ms-md-2"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="d-md-flex gap-md-4 action_employee">
+            <button type="button" class="btn btn-success">Thêm mới <i class="fas fa-plus-circle ms-md-2"></i></button>
+            <button type="button" class="btn btn-warning">Cập nhật <i class="fas fa-user-edit ms-md-2"></i></button>
+            <button type="button" class="btn btn-danger">Xóa <i class="fas fa-trash-alt ms-md-2"></i></button>
+        </div>
+    </div>
+</div>
+
+
+            

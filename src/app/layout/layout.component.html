@@ -1,5 +1,14 @@
 <div class="layout">
-    @if(path() == 'admin'
+    @if(
+        path() == 'admin'
+        || path() == 'thong-tin-cong-ty'
+        || path() == 'cap-nhat-gioi-thieu'
+        || path() == 'quan-ly-san-pham'
+        || path() == 'quan-ly-danh-muc'
+        || path() == 'quan-ly-banner'
+        || path() == 'quan-ly-thong-tin-tu-van'
+        || path() == 'quan-ly-thong-tin-khach-hang'
+        || path() == 'quan-ly-phan-quyen-nhan-su'
     ){
         <app-admin></app-admin>
     }

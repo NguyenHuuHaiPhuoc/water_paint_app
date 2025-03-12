@@ -2,6 +2,20 @@
     <app-admin-navbar></app-admin-navbar>
     <div id="layoutSidenav">
         <app-admin-sidenav-nav></app-admin-sidenav-nav>
-        <app-admin-sidenav-content></app-admin-sidenav-content>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="px-4">
+
+                    <!-- <app-employee></app-employee> -->
+                    <!-- <h1 class="mt-4">Thông tin nhân viên</h1> -->
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                    <app-admin-sidenav-content></app-admin-sidenav-content>
+                </div>
+            </main>
+        </div>
+        <!-- <router-outlet></router-outlet> -->
     </div>
 </div>

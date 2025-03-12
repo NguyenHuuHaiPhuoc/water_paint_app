@@ -8,7 +8,16 @@ import { ProductDetailComponent } from './components/product/product-detail/prod
 import { ContactComponent } from './components/body/contact/contact.component';
 import { AdviseComponent } from './components/body/advise/advise.component';
 import { AdviseDetailComponent } from './components/body/advise/advise-detail/advise-detail.component';
-import { AdminComponent } from './components/admin/admin.component';
+import { AdminSideNavContentComponent } from './components/admin/layout/sidenav-content/sidenav-content.component';
+import { EmployeeComponent } from './components/admin/layout/sidenav-content/employee/employee.component';
+import { CompanyComponent } from './components/admin/layout/sidenav-content/company/company.component';
+import { OurCompanyComponent } from './components/admin/layout/sidenav-content/our-company/our-company.component';
+import { ProductManagerComponent } from './components/admin/layout/sidenav-content/products/product-manager.componet';
+import { CategoryComponent } from './components/admin/layout/sidenav-content/categories/category.component';
+import { BannerComponent } from './components/admin/layout/sidenav-content/banner/banner.component';
+import { AdviseManagerComponent } from './components/admin/layout/sidenav-content/advise/advise.component';
+import { ContactCustomerComponent } from './components/admin/layout/sidenav-content/contact-customer/contact-customer.component';
+import { AuthorizationComponent } from './components/admin/layout/sidenav-content/authorization/authorization.component';
 
 export const routes: Routes = [
     {
@@ -22,7 +31,53 @@ export const routes: Routes = [
     {
         path: 'admin',
         title: 'Quản trị viên',
-        component: AdminComponent
+        component: AdminSideNavContentComponent,
+        children: [
+            {
+                path: '',
+                component: EmployeeComponent
+            },
+            {
+                path: 'thong-tin-cong-ty',
+                title:'Thông tin công ty',
+                component: CompanyComponent
+            },
+            {
+                path: 'cap-nhat-gioi-thieu',
+                title:'Cập nhật giới thiệu',
+                component: OurCompanyComponent
+            },
+            {
+                path: 'quan-ly-san-pham',
+                title:'Quản lý sản phẩm',
+                component: ProductManagerComponent
+            },
+            {
+                path: 'quan-ly-danh-muc',
+                title:'Quản lý danh mục',
+                component: CategoryComponent
+            },
+            {
+                path: 'quan-ly-banner',
+                title:'Quản lý Banner',
+                component: BannerComponent
+            },
+            {
+                path: 'quan-ly-thong-tin-tu-van',
+                title:'Quản lý thông tin tư vấn',
+                component: AdviseManagerComponent
+            },
+            {
+                path: 'quan-ly-thong-tin-khach-hang',
+                title:'Quản lý thông tin khách hàng',
+                component: ContactCustomerComponent
+            },
+            {
+                path: 'quan-ly-phan-quyen-nhan-su',
+                title:'Quản lý phân quyền nhân sự',
+                component: AuthorizationComponent
+            },
+        ]
     },
     {
         path: 'muc-in-an/gioi-thieu',
