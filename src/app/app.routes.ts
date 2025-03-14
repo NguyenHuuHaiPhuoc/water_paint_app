@@ -18,6 +18,7 @@ import { BannerComponent } from './components/admin/layout/sidenav-content/banne
 import { AdviseManagerComponent } from './components/admin/layout/sidenav-content/advise/advise.component';
 import { ContactCustomerComponent } from './components/admin/layout/sidenav-content/contact-customer/contact-customer.component';
 import { AuthorizationComponent } from './components/admin/layout/sidenav-content/authorization/authorization.component';
+import { LoginComponent } from './components/admin/login/login.component';
 
 export const routes: Routes = [
     {
@@ -27,6 +28,11 @@ export const routes: Routes = [
         path: 'muc-in-an',
         title: 'CÔNG TY HÓA CHẤT',
         component: HomeComponent
+    },
+    {
+        path: 'login',
+        title: 'Đăng nhập',
+        component: LoginComponent
     },
     {
         path: 'admin',

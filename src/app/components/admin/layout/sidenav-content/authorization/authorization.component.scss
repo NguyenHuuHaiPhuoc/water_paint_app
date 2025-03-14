@@ -7,111 +7,47 @@
     color: #06465B;
     padding: 0 15px;
 }
-:root {
-	--sz: 10vmin;
-	--sp: 1s;
-	--tr: all 0.5s ease 0s;
-}	
-
-.toggle  {
-	position: relative;
-	width: calc(var(--sz) * 4);
-	height: calc(var(--sz) * 2);
-	display: flex;
-	align-items: center;
-	justify-content: center;
+label{
+    position: relative;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
 }
 
-input {
-	display: none;
+label input{
+    position: relative;
+    z-index: 1;
+    appearance: none;
 }
 
-label[for=btn] {
-	position: absolute;
-	width: calc(var(--sz) * 4);
-	height: calc(var(--sz) * 2);
-	background: #fff;
-	border-radius: var(--sz);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 0 calc(var(--sz) * 0.5) 0 #0004;
-	pointer-events: none;
-}	
-
-.thumb {
-	position: absolute;
-	height: calc(calc(var(--sz) * 2) - calc(var(--sz) / 8));
-	top: calc(calc( var(--sz) / 10) + calc(var(--sz) / -25));
-	background: #111;
-	border-radius: var(--sz);
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	z-index: 1;
-	overflow: hidden;
-	padding: calc(var(--sz)* 0.65);
-	animation: go-left var(--sp) ease 0s;
-	width: calc(var(--sz)* 1.875);
-	right: calc(var(--sz)* 2.05);
-	pointer-events: all;
+label span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fe0000;
+    border-radius: 80px;
+    transition: 0.5s;
+    box-shadow: 0 5px 10px #fe000066;
 }
 
-// #btn:checked + label .thumb {
-// 	animation: go-right var(--sp) ease 0s;
-// 	width: calc(var(--sz)* 1.875);
-// 	right: calc(var(--sz)* 0.075);
-// 	justify-content: flex-end;
-// }
+label input:checked ~ span{
+    background: #05be05;
+    box-shadow: 0 5px 10px #05be0566;
+}
 
-// @keyframes go-left {
-// 	0%   { 
-// 		width: calc(var(--sz)* 1.875);
-// 		right: calc(var(--sz)* 0.075);
-// 	}
-// 	40%, 60%  { 
-// 		width: calc(var(--sz)* 3.85);
-// 		right: calc(var(--sz)* 0.075);
-// 	}
-// 	100% { 
-// 		width: calc(var(--sz)* 1.875);
-// 		right: calc(var(--sz)* 2.05);
-// 	}
-// }
+label span i{
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.5s;
+}
 
-// @keyframes go-right {
-// 	0%   { 
-// 		width: calc(var(--sz)* 1.875);
-// 		right: calc(var(--sz)* 2.05);
-// 	}
-// 	40%, 60%  { 
-// 		width: calc(var(--sz)* 3.85);
-// 		right: calc(var(--sz)* 0.075);
-// 	}
-// 	100% { 
-// 		width: calc(var(--sz)* 1.875);
-// 		right: calc(var(--sz)* 0.075);
-// 	}
-// }
-
-
-// label[for=btn]:before,
-// label[for=btn]:after {
-// 	content: "";
-// 	position: absolute;
-// 	border-radius: 100%;
-// 	width: calc(var(--sz)* 0.5);
-// 	height: calc(var(--sz)* 0.5);
-// 	background-color: #fff;
-// 	left: calc(var(--sz)* 0.75);
-// 	z-index: 3;
-// 	mix-blend-mode: difference;
-// }
-
-// label[for=btn]:after {
-// 	border-radius: var(--sz);
-// 	width: calc(var(--sz)* 0.25);
-// 	height: calc(var(--sz)* 0.75);
-// 	left: calc(var(--sz)* 2.85);
-// }
+label input:checked ~ span i{
+    left: 20px;
+}

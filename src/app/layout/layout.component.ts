@@ -4,6 +4,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { BodyComponent } from '../components/body/body.component';
 import { Location } from '@angular/common';
 import { AdminComponent } from '../components/admin/admin.component';
+import { LoginComponent } from '../components/admin/login/login.component';
 
 @Component({
   selector: 'app-layout',
@@ -12,7 +13,8 @@ import { AdminComponent } from '../components/admin/admin.component';
     HeaderComponent,
     BodyComponent,
     FooterComponent,
-    AdminComponent
+    AdminComponent,
+    LoginComponent
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
