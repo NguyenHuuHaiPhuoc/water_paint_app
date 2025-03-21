@@ -14,7 +14,11 @@
     }
     @else if (path() == 'login') {
         <app-login></app-login>
-    }@else{
+    }
+    @else if (path() == 'signup') {
+        <app-signup></app-signup>
+    }
+    @else{
         <app-header></app-header>
         <app-body></app-body>
         <app-footer></app-footer>

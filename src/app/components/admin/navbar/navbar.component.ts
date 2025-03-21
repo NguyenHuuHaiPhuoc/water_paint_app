@@ -9,9 +9,20 @@ import { Component, OnInit } from "@angular/core";
 
 export class AdminNavbarComponent implements OnInit{
 
+    public isLogin= false;
+
     constructor(){}
 
     ngOnInit(): void {
-        
+        const account = localStorage.getItem('account');
+
+        if(account){
+            this.isLogin = true;
+        }
+    }
+
+    public logout(){
+        localStorage.removeItem('account');
+        location.reload();
     }
 }

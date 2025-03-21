@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-center">
+    <!-- From Uiverse.io by akshat-patel28 -->
+    <div class="form-container">
+        <p class="title fs-4 text-uppercase">Chào mừng đến với chúng tôi</p>
+        <form class="form" [formGroup]="signupForm">
+            <input type="email" class="input" placeholder="Email" formControlName="email" />
+            <input type="password" class="input" placeholder="Mật khẩu" formControlName="password" />
+            <input type="text" class="input" placeholder="Họ và tên" formControlName="full_name" />
+            <input type="text" class="input" placeholder="Số điện thoại" formControlName="phone" />
+            <button type="button" class="form-btn" (click)="sigup($event)">Đăng ký</button>
+        </form>
+        <p class="sign-up-label text-center">
+            <a href="login" class="sign-up-link">Quay lại đăng nhập</a>
+        </p>
+    </div>
+</div>

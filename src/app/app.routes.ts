@@ -19,6 +19,8 @@ import { AdviseManagerComponent } from './components/admin/layout/sidenav-conten
 import { ContactCustomerComponent } from './components/admin/layout/sidenav-content/contact-customer/contact-customer.component';
 import { AuthorizationComponent } from './components/admin/layout/sidenav-content/authorization/authorization.component';
 import { LoginComponent } from './components/admin/login/login.component';
+import { SignupComponent } from './components/admin/signup/signup.component';
+import { AAuthGuard } from './service/authGuard.guard';
 
 export const routes: Routes = [
     {
@@ -35,9 +37,15 @@ export const routes: Routes = [
         component: LoginComponent
     },
     {
+        path: 'signup',
+        title: 'Đăng ký',
+        component: SignupComponent
+    },
+    {
         path: 'admin',
         title: 'Quản trị viên',
         component: AdminSideNavContentComponent,
+        canActivate: [AAuthGuard],
         children: [
             {
                 path: '',

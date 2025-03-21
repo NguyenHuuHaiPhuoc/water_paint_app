@@ -14,10 +14,9 @@
                         </form>
                     </div>
                 </li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">A fourth item</li>
-                <li class="list-group-item">And a fifth one</li>
+                @for (a of listAccount; track $index) {
+                    <li class="list-group-item" (click)="viewAccount(a)"> {{a.full_name}} </li>
+                }
             </ul>
         </div>
     </div>
@@ -25,14 +24,14 @@
         <div class="card mb-2">
             <div class="card-header text-primary fs-5 text-uppercase fw-bold text-center">nhân viên</div>
             <div class="card-body">
-                <form action="" class="row g-3">
+                <form [formGroup]="formAccount" class="row g-3">
                     <div class="col-md-4 d-md-flex flex-column gap-md-3">
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="full_name" class="form-label">Tên nhân viên</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="full_name">
+                                <input type="text" class="form-control" formControlName="full_name">
                             </div>
                         </div>
                         <div class="row">
@@ -40,15 +39,18 @@
                                 <label for="staff_id" class="form-label">Mã nhân viên</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="staff_id">
+                                <input type="text" class="form-control" id="staff_id" formControlName="emp_code">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="gender" class="form-label">Giới tính</label>
+                                <label class="form-label">Giới tính</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="gender">
+                                <label class="form-label me-md-2">Nam</label>
+                                <input type="radio" name="gender" class="me-md-5" formControlName="gender" value="nam">
+                                <label class="form-label me-md-2">Nữ</label>
+                                <input type="radio" name="gender" formControlName="gender" value="nu">
                             </div>
                         </div>
                         <div class="row">
@@ -57,7 +59,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="birthday"
-                                    placeholder="VD: 01/01/2000">
+                                    placeholder="VD: 01/01/2000" formControlName="birthday"/>
                             </div>
                         </div>
                         <div class="row">
@@ -65,15 +67,15 @@
                                 <label for="hometown" class="form-label">Quê quán</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="hometown">
+                                <input type="text" class="form-control" id="hometown" formControlName="hometown">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="nationnality" class="form-label">Quốc tịch</label>
+                                <label for="nationality" class="form-label">Quốc tịch</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="nationnality">
+                                <input type="text" class="form-control" id="nationality" formControlName="nationality">
                             </div>
                         </div>
                     </div>
@@ -83,7 +85,7 @@
                                 <label for="card_id" class="form-label">Số CCCD</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="card_id">
+                                <input type="text" class="form-control" id="card_id" formControlName="no_cart">
                             </div>
                         </div>
                         <div class="row">
@@ -92,7 +94,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="card_date"
-                                    placeholder="VD: 01/01/2000" />
+                                    placeholder="VD: 01/01/2000" formControlName="date_cart"/>
                             </div>
                         </div>
                         <div class="row">
@@ -100,7 +102,7 @@
                                 <label for="card_where" class="form-label">Nơi cấp CCCD</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="card_where">
+                                <input type="text" class="form-control" id="card_where" formControlName="where_cart">
                             </div>
                         </div>
                         <div class="row">
@@ -108,7 +110,7 @@
                                 <label for="tax_code" class="form-label">Mã số thuế</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="tax_code">
+                                <input type="text" class="form-control" id="tax_code" formControlName="tax_code">
                             </div>
                         </div>
                         <div class="row">
@@ -117,18 +119,19 @@
                             </div>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="tax_code_date"
-                                    placeholder="VD: 01/01/2000" />
+                                    placeholder="VD: 01/01/2000" formControlName="date_tax_code"/>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 d-md-flex flex-column gap-md-3">
+                        <input type="file" #uploadAvatar formControlName="img" [hidden]="true" (change)="chooseimage($event)">
                         <div class="avatar">
-                            <img src="assets/imgs/no-avatar.jpg" alt="No avatar" />
+                            <img [src]="imgReview?imgReview:'assets/imgs/no-avatar.jpg'" alt="No avatar" />
                         </div>
                         <div class="action_avatar mx-auto d-flex gap-md-3">
-                            <button type="button" class="btn btn-info">Tải ảnh <i
+                            <button type="button" class="btn btn-info" (click)="uploadAvatar.click()">Tải ảnh <i
                                     class="fas fa-upload ms-md-2"></i></button>
-                            <button type="button" class="btn btn-warning">Xóa <i
+                            <button type="button" class="btn btn-warning" (click)="removeImage()">Xóa <i
                                     class="fas fa-trash-alt ms-md-2"></i></button>
                         </div>
                     </div>
@@ -136,8 +139,7 @@
             </div>
         </div>
         <div class="d-md-flex gap-md-4 action_employee">
-            <button type="button" class="btn btn-success">Thêm mới <i class="fas fa-plus-circle ms-md-2"></i></button>
-            <button type="button" class="btn btn-warning">Cập nhật <i class="fas fa-user-edit ms-md-2"></i></button>
+            <button type="button" class="btn btn-success" (click)="update()">Cập nhật <i class="fas fa-user-edit ms-md-2"></i></button>
             <button type="button" class="btn btn-danger">Xóa <i class="fas fa-trash-alt ms-md-2"></i></button>
         </div>
     </div>
