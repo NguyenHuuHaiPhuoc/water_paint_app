@@ -79,11 +79,12 @@ export class SignupComponent{
                                                   toast.onmouseenter = Swal.stopTimer;
                                                   toast.onmouseleave = Swal.resumeTimer;
                                                 }
-                                              });
-                                              Toast.fire({
-                                                icon: "success",
-                                                title: resq.message
-                                              });
+                                            });
+                                            Toast.fire({
+                                            icon: "success",
+                                            title: resq.message
+                                            });
+                                            this.resetForm();
                                         }
                                     },
                                     error(err) {
@@ -109,5 +110,14 @@ export class SignupComponent{
                 }
             });
         }
+    }
+
+    private resetForm() {
+        this.signupForm.setValue({
+            email: null,
+            password: null,
+            full_name: null,
+            phone: null
+        });
     }
 }

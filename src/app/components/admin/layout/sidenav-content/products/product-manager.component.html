@@ -1,0 +1,170 @@
+<div class="row mx-4">
+  <div class="col-md-4">
+    <ul class="list-group mb-md-3">
+      <li class="list-group-item active text-center fs-5" aria-current="true">Danh mục</li>
+      <li class="list-group-item text-center">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Tên sản phẩm" (input)="searchProduct($event)"/>
+        </form>
+      </li>
+    </ul>
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticAddProduct">Thêm mới <i class="bi bi-plus-circle-fill"></i></button>
+  </div>
+  <div class="col-md-8">
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tên sản phẩm</th>
+          <th scope="col">Hóa chất</th>
+          <th scope="col">Mo tả</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (i of lisProductFiter; track $index) {
+          @if(!i.is_del){
+            <tr>
+              <th scope="row">{{lisProductFiter.length - (lisProductFiter.length - ($index+1))}}</th>
+              <td role="button" class="text-decoration-underline" (click)="viewProductDetail(i);">
+                {{i.name}}
+              </td>
+              <td>{{i.chemical}}</td>
+              <td>{{i.description}}</td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticAddProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticAddProductLabel">Thêm sản phẩm</h1>
+        <button type="button" class="btn-close" id="close-form" data-bs-dismiss="modal" aria-label="Close" (click)="resetForm()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formProduct">
+          <div class="row mb-md-3">
+            <div class="col">
+              <label class="form-label">Tên sản phẩm</label>
+              <input type="text" class="form-control" autocomplete="off" formControlName="name"/>
+              @if(formProduct.controls['name'].invalid 
+                  && (formProduct.controls['name'].touched || formProduct.controls['name'].dirty)){
+                @if(formProduct.controls['name'].errors){
+                  <div id="emailHelp" class="form-text text-warning">Hãy nhập tên sản phẩm!</div>
+                }
+              }
+            </div>
+            <div class="col">
+              <label class="form-label">Hóa chất</label>
+              <input type="text" class="form-control" autocomplete="off" formControlName="chemical"/>
+              @if(formProduct.controls['chemical'].invalid 
+                  && (formProduct.controls['chemical'].touched || formProduct.controls['chemical'].dirty)){
+                @if(formProduct.controls['chemical'].errors){
+                  <div class="form-text text-warning">Hãy nhập tên hóa chất!</div>
+                }
+              }
+            </div>
+            <div class="col d-md-flex gap-md-2">
+              <div class="upload-img text-center">
+                <img  [src]="imgAddProduct?imgAddProduct:'/assets/imgs/no-avatar.jpg'" alt="No Image"/>
+                <input type="file" [hidden]="true" #uploadImgAddProduct (change)="chooseImgAddProduct($event)"/>
+              </div>
+              <div>
+                <button class="btn btn-success" (click)="uploadImgAddProduct.click()">Tải ảnh</button>
+              </div>
+            </div>
+          </div>
+          <div class=" row mb-3">
+            <div class="col">
+              <label class="form-label">Ngày sản xuất</label>
+              <input type="date" class="form-control" autocomplete="off" formControlName="production_date"/>
+            </div>
+            <div class="col">
+              <label class="form-label">Trọng lượng</label>
+              <input type="number" class="form-control" autocomplete="off" formControlName="weights"/>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Số lượng</label>
+            <input type="number" class="form-control" autocomplete="off" formControlName="quantity"/>
+          </div>
+          <div class="row mb-md-3">
+            <div class="col">
+              <label class="form-label"></label>
+              <select id="catelog1" class="form-select" formControlName="cateLV1" (change)="viewCatelog2($event)">
+                <option value="">-- Chọn danh mục cấp 1 --</option>
+                @for (i of listCatelog1; track $index) {
+                  @if(!i.is_del){
+                    <option [value]="i.id">{{i.name}}</option>
+                  }
+                }
+              </select>
+              @if(formProduct.controls['cateLV1'].invalid 
+                  && (formProduct.controls['cateLV1'].touched || formProduct.controls['cateLV1'].dirty)){
+                @if(formProduct.controls['cateLV1'].errors){
+                  <div class="form-text text-warning">Hãy nhập chọn loại danh mục!</div>
+                }
+              }
+            </div>
+            <div class="col">
+              <label class="form-label"></label>
+              <select id="catelog2" class="form-select" formControlName="cateLV2">
+                <option value="">-- Chọn danh mục cấp 2 --</option>
+                @for (i of listCatelog2; track $index) {
+                  @if(!i.is_del){
+                    <option [value]="i.id">{{i.name}}</option>
+                  }
+                }
+              </select>
+              @if(formProduct.controls['cateLV2'].invalid 
+                  && (formProduct.controls['cateLV2'].touched || formProduct.controls['cateLV2'].dirty)){
+                @if(formProduct.controls['cateLV2'].errors){
+                  <div class="form-text text-warning">Hãy nhập chọn loại danh mục!</div>
+                }
+              }
+            </div>
+          </div>
+          <div class="mb-md-3">
+            <label class="form-label">Mô tả sản phẩm</label>
+            <textarea class="form-control" rows="3" formControlName="description"></textarea>
+            @if(formProduct.controls['description'].invalid 
+                && (formProduct.controls['description'].touched || formProduct.controls['description'].dirty)){
+              @if(formProduct.controls['description'].errors){
+                <div class="form-text text-warning">Hãy nhập mô tả ngắn về sản phẩm!</div>
+              }
+            }
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Thông tin sản phẩm</label>
+            <angular-editor formControlName="info" [config]="editorConfig"></angular-editor>
+            @if(formProduct.controls['info'].invalid 
+                && (formProduct.controls['info'].touched || formProduct.controls['info'].dirty)){
+              @if(formProduct.controls['info'].errors){
+                <div class="form-text text-warning">Hãy nhập thông tin của sản phẩm!</div>
+              }
+            }
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Ứng dụng</label>
+            <angular-editor formControlName="application" [config]="editorConfig"></angular-editor>
+            @if(formProduct.controls['application'].invalid 
+                && (formProduct.controls['application'].touched || formProduct.controls['application'].dirty)){
+              @if(formProduct.controls['application'].errors){
+                <div class="form-text text-warning">Hãy nhập ứng dụng của sản phẩm!</div>
+              }
+            }
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="create()" [disabled]="!formProduct.valid">Thêm</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-detail [product]="product" [hidden]="true"></app-detail> -->

@@ -26,4 +26,8 @@ export class AccountService{
     public update(req:any):Observable<any>{
         return this.http.put<any>(this.apiUrl + '/update/account', req);
     }
+
+    public delete(req:any):Observable<any> {
+        return this.http.patch<any>(this.apiUrl + '/delete/account', req);
+    }
 }

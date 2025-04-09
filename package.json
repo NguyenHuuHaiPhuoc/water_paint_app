@@ -1,5 +1,5 @@
 {
-  "name": "water-paint-app-v1",
+  "name": "my-demo",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:water-paint-app-v1": "node dist/water-paint-app-v1/server/server.mjs"
+    "serve:ssr:my-demo": "node dist/my-demo/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -22,12 +22,15 @@
     "@angular/platform-server": "^19.2.0",
     "@angular/router": "^19.2.0",
     "@angular/ssr": "^19.2.0",
+    "@kolkov/angular-editor": "^3.0.0-beta.0",
+    "angular-font-awesome": "^3.1.2",
+    "bootstrap-icons": "^1.11.3",
     "express": "^4.18.2",
-    "firebase": "^11.5.0",
+    "moment": "^2.30.1",
+    "my-demo": "file:",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.17.2",
     "tslib": "^2.3.0",
-    "water-paint-app-v1": "file:",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {

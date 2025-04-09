@@ -1,39 +1,21 @@
 
-<div class="mt-md-4">
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="assets/imgs/products/19-cch-pha-muc-in-lua-trn-giay-thuong-2.webp" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h3 class="text-dark">First slide label</h3>
-              </div>
-          </div>
-          <div class="carousel-item">
-            <img src="assets/imgs/products/ttk-under2.webp" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h3>First slide label</h3>
-              </div>
-          </div>
-          <div class="carousel-item">
-            <img src="assets/imgs/products/violet-jf-v.webp" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h3>First slide label</h3>
-              </div>
+<h4 class="mt-md-4">{{title}}</h4>
+<div class="div">
+  <div class="row my-md-4">
+    @for (i of listProductByCateID; track $index) {
+      <div class="col-md-4 mb-md-4">
+        <div class="card" style="width: 18rem;">
+          <img src="/assets/imgs/products/violet-jf-v.webp" class="card-img-top" alt="No image"/>
+          <div class="card-body">
+            <h4 class="card-title text-center">
+              <a [href]="'hd-chemical/san-pham-chi-tiet/'+i.id" class="">{{i.name}}</a>
+            </h4>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
-</div>
-<h4 class="mt-md-4">{{product_name}}</h4>
-<div class="div">
-    <table class="table table-hover table-bordered">
+    }
+  </div>
+    <!-- <table class="table table-hover table-bordered">
         <thead>
           <tr class="text-center">
             <th scope="col">Tên sản phẩm</th>
@@ -44,10 +26,9 @@
         <tbody>
           <tr class="">
             <th class="text-center" scope="row">
-              <a href="muc-in-an/san-pham-chi-tiet/3">PLEXTOL R 4111</a>
+              <a href="hd-chemical/san-pham-chi-tiet/3">PLEXTOL R 4111</a>
             </th>
             <td class="text-center">Mark</td>
-            <td> {{getPath()}} </td>
           </tr>
           <tr>
             <th scope="row">2</th>
@@ -55,5 +36,5 @@
             <td>Thornton</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
 </div>

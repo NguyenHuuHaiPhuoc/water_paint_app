@@ -1,46 +1,53 @@
 <div class="d-md-flex " id="fixNav">
-  <div class="container">
+  <div class="container justify-content-around justify-content-md-around">
     <div class="logo">
-      <a href="">
+      <a href="#">
         <img src="assets/imgs/logo.png" alt="No logo">
       </a>
     </div>
     <nav class="navbar navbar-expand-lg menu-item" style="gap: 18rem;">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">TRANG CHỦ</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="muc-in-an/gioi-thieu">GIỚI THIỆU</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="muc-in-an/san-pham" role="button" data-bs-toggle="dropdown">
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">TRANG CHỦ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="hd-chemical/gioi-thieu">GIỚI THIỆU</a>
+          </li>
+          <li class="nav-item dropdown">
+            @if(catelogs.length > 1){
+              <a class="nav-link dropdown-toggle" href="hd-chemical/san-pham" role="button" data-bs-toggle="dropdown">
                 SẢN PHẨM
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="muc-in-an/danh-muc/keo-cong-nghiep-phu-bong">Keo công nghiệp & phủ bóng</a></li>
-                <li><a class="dropdown-item" href="muc-in-an/danh-muc/nguyen-lieu-son-hoa-chat">Nguyên liệu sơn</a></li>
-                <li><a class="dropdown-item" href="muc-in-an/danh-muc/hoa-chat-vai-det-nhuom">Hóa chất mực in</a></li>
-                <li><a class="dropdown-item" href="#">Bột màu hữu cơ</a></li>
+                @for (i of catelogs; track $index) {
+                  <li><a class="dropdown-item" [href]="'hd-chemical/danh-muc/'+i.id" >{{i.name}}</a></li>
+                }
               </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="muc-in-an/tu-van-san-pham">TƯ VẤN SẢN PHẨM</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="muc-in-an/lien-he">LIÊN HỆ</a>
-            </li>
-          </ul>
-        </div>
+            } @else{
+              @for (i of catelogs; track $index) {
+                <a class="nav-link text-uppercase" [href]="'hd-chemical/danh-muc/'+i.id" >{{i.name}}</a>
+              }
+            }
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="hd-chemical/tu-van-san-pham">TƯ VẤN SẢN PHẨM</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="hd-chemical/lien-he">LIÊN HỆ</a>
+          </li>
+        </ul>
       </div>
-      <div class="btn-group" role="group" aria-label="Basic outlined example">
+    </div>
+      <!-- <div class="btn-group" role="group" aria-label="Basic outlined example">
         <button type="button" class="btn btn-outline-info">VN</button>
         <button type="button" class="btn btn-outline-info">EN</button>
-      </div>
+      </div> -->
     </nav>
   </div>
 </div>

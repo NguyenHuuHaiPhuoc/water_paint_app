@@ -6,16 +6,18 @@
                     Danh sách nhân viên</li>
                 <li class="list-group-item">
                     <div>
+                        <input class="form-control me-2" type="search" placeholder="Search"
+                            aria-label="Search" (input)="searchUser($event)">
                         <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search"
-                                aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit"><i
-                                    class="fas fa-search"></i></button>
+                            <!-- <button class="btn btn-outline-success" type="submit"><i
+                                    class="fas fa-search"></i></button> -->
                         </form>
                     </div>
                 </li>
-                @for (a of listAccount; track $index) {
-                    <li class="list-group-item" (click)="viewAccount(a)"> {{a.full_name}} </li>
+                @for (a of listAccountFilter; track $index) {
+                    @if(!a.is_del){
+                        <li class="list-group-item" (click)="viewAccount(a)"> {{a.full_name}} </li>
+                    }
                 }
             </ul>
         </div>
@@ -58,7 +60,7 @@
                                 <label for="birthday" class="form-label">Ngày sinh</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="birthday"
+                                <input type="date" class="form-control" id="birthday"
                                     placeholder="VD: 01/01/2000" formControlName="birthday"/>
                             </div>
                         </div>
@@ -124,23 +126,23 @@
                         </div>
                     </div>
                     <div class="col-md-4 d-md-flex flex-column gap-md-3">
-                        <input type="file" #uploadAvatar formControlName="img" [hidden]="true" (change)="chooseimage($event)">
+                        <input type="file" #uploadAvatar [hidden]="true" (change)="chooseimage($event)">
                         <div class="avatar">
                             <img [src]="imgReview?imgReview:'assets/imgs/no-avatar.jpg'" alt="No avatar" />
                         </div>
                         <div class="action_avatar mx-auto d-flex gap-md-3">
                             <button type="button" class="btn btn-info" (click)="uploadAvatar.click()">Tải ảnh <i
-                                    class="fas fa-upload ms-md-2"></i></button>
+                                    class="bi bi-upload ms-md-2"></i></button>
                             <button type="button" class="btn btn-warning" (click)="removeImage()">Xóa <i
-                                    class="fas fa-trash-alt ms-md-2"></i></button>
+                                    class="bi bi-trash ms-md-2"></i></button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <div class="d-md-flex gap-md-4 action_employee">
-            <button type="button" class="btn btn-success" (click)="update()">Cập nhật <i class="fas fa-user-edit ms-md-2"></i></button>
-            <button type="button" class="btn btn-danger">Xóa <i class="fas fa-trash-alt ms-md-2"></i></button>
+            <button type="button" class="btn btn-success" (click)="update()">Cập nhật <i class="bi bi-pencil-square ms-md-2"></i></button>
+            <button type="button" class="btn btn-danger" (click)="deleteUser()">Xóa <i class="bi bi-trash ms-md-2"></i></button>
         </div>
     </div>
 </div>

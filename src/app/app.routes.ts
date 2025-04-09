@@ -12,7 +12,7 @@ import { AdminSideNavContentComponent } from './components/admin/layout/sidenav-
 import { EmployeeComponent } from './components/admin/layout/sidenav-content/employee/employee.component';
 import { CompanyComponent } from './components/admin/layout/sidenav-content/company/company.component';
 import { OurCompanyComponent } from './components/admin/layout/sidenav-content/our-company/our-company.component';
-import { ProductManagerComponent } from './components/admin/layout/sidenav-content/products/product-manager.componet';
+import { ProductManagerComponent } from './components/admin/layout/sidenav-content/products/product-manager.component';
 import { CategoryComponent } from './components/admin/layout/sidenav-content/categories/category.component';
 import { BannerComponent } from './components/admin/layout/sidenav-content/banner/banner.component';
 import { AdviseManagerComponent } from './components/admin/layout/sidenav-content/advise/advise.component';
@@ -21,14 +21,16 @@ import { AuthorizationComponent } from './components/admin/layout/sidenav-conten
 import { LoginComponent } from './components/admin/login/login.component';
 import { SignupComponent } from './components/admin/signup/signup.component';
 import { AAuthGuard } from './service/authGuard.guard';
+import { DetailComponent } from './components/admin/layout/sidenav-content/products/detail/detail.component';
+import { NotFoundComponent } from './components/body/not_found/not-found.component';
 
 export const routes: Routes = [
     {
-        path: '', redirectTo: 'muc-in-an', pathMatch: 'full'
+        path: '', redirectTo: 'hd-chemical', pathMatch: 'full'
     },
     {
-        path: 'muc-in-an',
-        title: 'CÔNG TY HÓA CHẤT',
+        path: 'hd-chemical',
+        title: 'Công ty thương mai dịch vụ HD Chemical',
         component: HomeComponent
     },
     {
@@ -67,6 +69,11 @@ export const routes: Routes = [
                 component: ProductManagerComponent
             },
             {
+                path: 'quan-ly-san-pham/chi-tiet',
+                title:'Chi tiết sản phẩm',
+                component: DetailComponent
+            },
+            {
                 path: 'quan-ly-danh-muc',
                 title:'Quản lý danh mục',
                 component: CategoryComponent
@@ -94,27 +101,27 @@ export const routes: Routes = [
         ]
     },
     {
-        path: 'muc-in-an/gioi-thieu',
+        path: 'hd-chemical/gioi-thieu',
         title: 'Về chúng tôi',
         component: IntroComponent
     },
     {
-        path: 'muc-in-an/lien-he',
+        path: 'hd-chemical/lien-he',
         title: 'Liên hệ',
         component: ContactComponent
     },
     {
-        path: 'muc-in-an/tu-van-san-pham',
+        path: 'hd-chemical/tu-van-san-pham',
         title: 'Tư vấn sản phẩm',
         component: AdviseComponent
     },
     {
-        path: 'muc-in-an/tu-van-san-pham/:noidungchitiet',
+        path: 'hd-chemical/tu-van-san-pham/:noidungchitiet',
         title: 'Tư vấn sản phẩm',
         component: AdviseDetailComponent
     },
     {
-        path: 'muc-in-an',
+        path: 'hd-chemical',
         title: 'Sản phẩm',
         component: ProductComponent,
         children: [
@@ -135,4 +142,8 @@ export const routes: Routes = [
             },
         ]
     },
+    {
+        path: '**',
+        component: NotFoundComponent
+    }
 ];

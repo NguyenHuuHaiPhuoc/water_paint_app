@@ -27,6 +27,8 @@
   
   #cCarousel #next {
     right: 0px;
+    pointer-events: auto;
+    visibility: visible;
   }
   
   #carousel-vp {

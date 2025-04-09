@@ -2,9 +2,11 @@
     <!-- From Uiverse.io by akshat-patel28 -->
     <div class="form-container">
         <p class="title fs-4 text-uppercase">Chào mừng đến với chúng tôi</p>
-        <form class="form" [formGroup]="signupForm">
+        <form class="form position-relative" [formGroup]="signupForm">
             <input type="email" class="input" placeholder="Email" formControlName="email" />
             <input type="password" class="input" placeholder="Mật khẩu" formControlName="password" />
+            <i class="bi bi-eye position-absolute"></i>
+            <i class="bi bi-eye-slash position-absolute"></i>
             <input type="text" class="input" placeholder="Họ và tên" formControlName="full_name" />
             <input type="text" class="input" placeholder="Số điện thoại" formControlName="phone" />
             <button type="button" class="form-btn" (click)="sigup($event)">Đăng ký</button>

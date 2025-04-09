@@ -1,0 +1,18 @@
+.produc-image div{
+    width: 200px;
+    height: 200px;
+    border: 1px solid grey;
+    border-radius: 10px !important;
+}
+.produc-image img{
+    width: 198px;
+    height: 198px;
+    border-radius: 10px !important;
+}
+.action-product{
+    // position: absolute;
+    // position: absolute;
+    // top: -11rem;
+    display: flex;
+    gap: 1rem;
+}

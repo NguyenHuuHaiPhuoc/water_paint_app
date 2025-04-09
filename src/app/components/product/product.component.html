@@ -2,28 +2,22 @@
     <div class="row mt-md-4">
         <div class="col-md-3">
             <ul class="list-product ">
-                @if(listProduct.length > 0) {
-                    @for (listP of listProduct; track $index) {
-                        <li class="text-uppercase fs-5 ">
-                            <a class="fw-bold text-decoration-none" href="muc-in-an/danh-muc/{{listP.path}}">{{listP.product_name}}</a>
-                            <ul>
-                                @if(listP.path == getPath()){
-                                    @if(list_product_item.length > 0){
-                                        @for (i of list_product_item; track $index) {
-                                            @if(i.product_id == listP.id) {
-                                                <li class="text-capitalize fs-6">
-                                                    <a class="text-decoration-none" href="muc-in-an/san-pham/{{i.path}}">
-                                                        {{i.name}}
-                                                    </a>
-                                                </li>
-                                            }
-                                        }
-                                    }
-                                }
-                            </ul>
-                        </li>
-                    }
+                @for (i of listCategoryLV1s; track $index) {
+                    <li class="text-uppercase fs-5 ">
+                        <a class="fw-bold text-decoration-none" href="hd-chemical/danh-muc/{{i.id}}">{{i.name}}</a>
+                        <ul>
+                            @for (i of listCategoryLV2s; track $index) {
+                                <li class="text-capitalize fs-6">
+                                    <a class="text-decoration-none" href="hd-chemical/san-pham/{{i.id}}">
+                                        {{i.name}}
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
                 }
+                <!-- @if(listProduct.length > 0) {
+                } -->
             </ul>
         </div>
         <div class="col-md-9">

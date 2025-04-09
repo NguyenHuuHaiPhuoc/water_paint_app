@@ -63,9 +63,8 @@ export class LoginComponent implements OnInit{
                         title: resp.message
                     });
                     this.router.navigate(['admin']);
-                    // set localstorage
 
-                    localStorage.setItem('account',resp.result);
+                    localStorage.setItem('account',JSON.stringify(resp.result));
                 } else{
                     const Toast = Swal.mixin({
                         toast: true,

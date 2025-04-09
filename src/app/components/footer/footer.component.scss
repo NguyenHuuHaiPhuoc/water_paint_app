@@ -9,3 +9,10 @@ img{
 h4{
     color: #06465B;
 }
+
+@media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */
+    .footer-logo img {
+      width: 100px;
+      height: 100px;
+    }
+} 

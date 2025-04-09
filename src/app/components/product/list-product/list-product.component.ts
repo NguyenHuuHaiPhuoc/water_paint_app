@@ -1,11 +1,17 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { CategoriService } from '../../../service/categori.service';
 
 @Component({
   selector: 'app-list-product',
-  imports: [],
+  imports: [
+    
+  ],
   templateUrl: './list-product.component.html',
-  styleUrl: './list-product.component.scss'
+  styleUrl: './list-product.component.scss',
+  providers: [
+    CategoriService
+  ]
 })
 export class ListProductComponent implements OnInit{
   public listProduct = [
@@ -31,19 +37,51 @@ export class ListProductComponent implements OnInit{
     },
   ];
 
-  public title = '';
+  public catelogLV1 :any;
+  public catelogLV2s :any;
+
+  public cateID:any;
+
+  
 
   constructor(
-    private localtion: Location
+    private localtion: Location,
+    private catelogService: CategoriService
   ) {}
 
   ngOnInit(): void {
-    for (let i = 0; i < this.listProduct.length; i++) {
-      if(this.listProduct[i].path == this.getPath()){
-        this.title = this.listProduct[i].product_name;
-        break;
+    
+    this.cateID = this.localtion.path().split('/');
+    this.cateID = this.cateID[this.cateID.length-1];
+
+    this.loadData();
+
+    this.catelogService.findByIdCategoryLV1(this.cateID).subscribe({
+      next: (resp) =>{
+        if(resp.status == 201 && !resp.result.is_del){
+          this.catelogLV1 = resp.result;
+        } 
+      },
+      error(err) {
+        console.error(err);
       }
+    });
+  }
+
+  private loadData(){
+    const req = {
+      id: this.cateID
     }
+    this.catelogService.findByCateID(req).subscribe({
+      next: (resp) => {
+        if(resp.status == 201){
+          this.catelogLV2s = resp.listResult;
+        }
+      },
+      error(err){
+        console.error(err);
+      }
+    });
   }
 
   public getPath():string {
