@@ -16,3 +16,9 @@
     font-weight: 700;
     font-size: 20px;
 }
+
+@media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */
+    .list-category {
+      display: none;
+    }
+} 

@@ -17,7 +17,8 @@
           <th scope="col">#</th>
           <th scope="col">Tên sản phẩm</th>
           <th scope="col">Hóa chất</th>
-          <th scope="col">Mo tả</th>
+          <th scope="col">Mô tả</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -30,11 +31,15 @@
               </td>
               <td>{{i.chemical}}</td>
               <td>{{i.description}}</td>
+              <td><button class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
             </tr>
           }
         }
       </tbody>
     </table>
+    <div class="">
+      <app-pagination></app-pagination>
+    </div>
   </div>
 </div>
 
@@ -141,10 +146,10 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Thông tin sản phẩm</label>
-            <angular-editor formControlName="info" [config]="editorConfig"></angular-editor>
-            @if(formProduct.controls['info'].invalid 
-                && (formProduct.controls['info'].touched || formProduct.controls['info'].dirty)){
-              @if(formProduct.controls['info'].errors){
+            <angular-editor formControlName="intro_product" [config]="editorConfig"></angular-editor>
+            @if(formProduct.controls['intro_product'].invalid 
+                && (formProduct.controls['intro_product'].touched || formProduct.controls['intro_product'].dirty)){
+              @if(formProduct.controls['intro_product'].errors){
                 <div class="form-text text-warning">Hãy nhập thông tin của sản phẩm!</div>
               }
             }

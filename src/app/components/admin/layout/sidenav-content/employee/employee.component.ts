@@ -62,6 +62,7 @@ export class EmployeeComponent implements OnInit{
                     this.listAccount = resp.listResult;
                     this.listAccountFilter = resp.listResult;
                 }
+                this.viewAccount(this.listAccountFilter[0]);
             },
             error(err) {
                 console.log(err);
@@ -162,7 +163,7 @@ export class EmployeeComponent implements OnInit{
         } else{
             Swal.fire({
                 title: "Hãy chọn 1 nhân viên để cập nhật",
-                icon: "error",
+                icon: "warning",
                 draggable: true
             });
         }

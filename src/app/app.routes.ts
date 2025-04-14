@@ -26,10 +26,10 @@ import { NotFoundComponent } from './components/body/not_found/not-found.compone
 
 export const routes: Routes = [
     {
-        path: '', redirectTo: 'hd-chemical', pathMatch: 'full'
+        path: '', redirectTo: 'hdchemicals', pathMatch: 'full'
     },
     {
-        path: 'hd-chemical',
+        path: 'hdchemicals',
         title: 'Công ty thương mai dịch vụ HD Chemical',
         component: HomeComponent
     },
@@ -101,27 +101,27 @@ export const routes: Routes = [
         ]
     },
     {
-        path: 'hd-chemical/gioi-thieu',
+        path: 'hdchemicals/gioi-thieu',
         title: 'Về chúng tôi',
         component: IntroComponent
     },
     {
-        path: 'hd-chemical/lien-he',
+        path: 'hdchemicals/lien-he',
         title: 'Liên hệ',
         component: ContactComponent
     },
     {
-        path: 'hd-chemical/tu-van-san-pham',
+        path: 'hdchemicals/tu-van-san-pham',
         title: 'Tư vấn sản phẩm',
         component: AdviseComponent
     },
     {
-        path: 'hd-chemical/tu-van-san-pham/:noidungchitiet',
+        path: 'hdchemicals/tu-van-san-pham/:noidungchitiet',
         title: 'Tư vấn sản phẩm',
         component: AdviseDetailComponent
     },
     {
-        path: 'hd-chemical',
+        path: 'hdchemicals',
         title: 'Sản phẩm',
         component: ProductComponent,
         children: [

@@ -1,4 +1,4 @@
-<div>
+<div class="mt-5 mt-md-0">
     <h2 class="fs-3 fw-bold text-uppercase p-md-3">{{ catelogLV1.name }}</h2>
     <p>Mực in vải là loại mực được sử dụng trong các kỹ thuật in trực tiếp lên bề mặt vải hoặc các sản
          phẩm dệt may để tạo hình ảnh, họa tiết hoặc nội dung. Đây là thành phần quan trọng trong ngành
@@ -73,4 +73,20 @@
             <img src="/assets/imgs/category/ung-dung-muc-in-vai.jpg" loading="lazy" alt="No image"/>
         </div>
     </div>
+</div>
+@if(screenWidth <= 768) {
+    <button class="btn btn-secondary offcanvasCategory" [style.display]="visible?'block':'none'"
+ type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+    <i class="bi bi-filter-circle fs-5"></i>
+</button>
+}
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p>Try scrolling the rest of the page to see this option in action.</p>
+  </div>
 </div>

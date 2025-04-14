@@ -18,3 +18,9 @@
     background-color: #06465B;
     color: #fff;
 }
+
+@media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */
+    .product_same_type{
+        margin: 1rem 0;
+    }
+} 

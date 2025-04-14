@@ -1,0 +1,14 @@
+
+.logo{
+    max-width: 300px;
+    max-height: 300px;
+}
+.logo img{
+    width: 150px;
+    height: 150px;
+    border: 1px solid gray;
+    border-radius: 50%;
+}
+.input-focus:focus{
+    border: none;
+}

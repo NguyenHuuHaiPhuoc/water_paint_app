@@ -1,3 +1,90 @@
-<div class="row">
-    
+<div class="container">
+    <div class="row">
+        <h3 class="text-uppercase">{{name?name:'tên công ty'}}</h3>
+        <form class="mt-5" [formGroup]="formCompany">
+            <div class="row">
+                <div class="col-2 ps-5 pt-2">
+                    <label for="companyName" class="form-label">Tên công ty</label>
+                </div>    
+                <div class="col-5">
+                    <input type="text" autocomplete="off" formControlName="name" id="companyName" class="form-control border-top-0 border-start-0 border-end-0 rounded-0" />
+                </div>    
+                <div class="col-4">
+                    <div class="logo mx-auto">
+                        <img class="ms-5" [src]="logoReview?'':'assets/imgs/no-image.png'" alt="No Image" loading="lazy" role="button"/>
+                        <input type="file" name="logo" id="logo" hidden/>
+                    </div>
+                </div>    
+            </div>
+            <div class="row mt-5">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4 ps-5 pt-2">
+                            <label for="taxCode" class="form-label">Mã số thuế</label>
+                        </div>    
+                        <div class="col-8">
+                            <input type="text" autocomplete="off" formControlName="tax_code" id="taxCode" class="form-control border-top-0 border-start-0 border-end-0 rounded-0" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4 ps-5 pt-2">
+                            <label for="email" class="form-label">Email</label>
+                        </div>    
+                        <div class="col-8">
+                            <input type="email" id="email" formControlName="email" autocomplete="off" class="form-control border-top-0 border-start-0 border-end-0 rounded-0" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4 ps-5 pt-2">
+                            <label for="representative" class="form-label">Người đại diện</label>
+                        </div>    
+                        <div class="col-8">
+                            <input type="text" autocomplete="off" formControlName="representative" id="representative" class="form-control border-top-0 border-start-0 border-end-0 rounded-0" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4 ps-5 pt-2">
+                            <label for="phone" class="form-label">Điện thoại</label>
+                        </div>    
+                        <div class="col-8">
+                            <input type="text" id="phone" autocomplete="off" formControlName="phone" class="form-control border-top-0 border-start-0 border-end-0 rounded-0" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4 ps-5 pt-2">
+                            <label for="date_Of_Operation" class="form-label">Ngày hoạt động</label>
+                        </div>    
+                        <div class="col-8">
+                            <input type="date" id="date_Of_Operation" formControlName="date_of_operation" autocomplete="off" class="form-control border-top-0 border-start-0 border-end-0 rounded-0" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4 ps-5 pt-2">
+                            <label for="address" class="form-label">Địa chỉ</label>
+                        </div>    
+                        <div class="col-8">
+                            <input type="text" autocomplete="off" formControlName="address" id="address" class="form-control border-top-0 border-start-0 border-end-0 rounded-0" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 justify-content-center">
+                <button type="button" class="btn btn-success col-6" (click)="sendRequest()">Cập nhật</button>
+            </div>
+        </form>
+    </div>
 </div>

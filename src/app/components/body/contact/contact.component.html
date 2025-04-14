@@ -1,45 +1,45 @@
-<div class="container mt-md-5">
+<div class="container mt-5 mx-auto">
     <div class="row">
         <div class="col-md-6">
-            <div class="d-md-flex flex-column text-center">
-                <span class="fs-3 text-uppercase text-info">nhập thông tin của bạn</span>
-                <span class="fs-3 text-uppercase text-info">chúng tôi sẽ liên hệ với bạn</span>
+            <div class="d-flex flex-column text-center ">
+                <span class="fs-3 text-uppercase ">nhập thông tin của bạn</span>
+                <span class="fs-3 text-uppercase ">chúng tôi sẽ liên hệ với bạn</span>
             </div>
-            <div class="mt-md-3">
-                <form class="row g-3">
+            <div class="mt-3">
+                <form class="row g-3" [formGroup]="formInfo">
                     <div class="col-md-6">
-                        <label for="full_namename" class="form-label">Tên của bạn</label>
-                        <input type="text" class="form-control" id="full_namename">
+                        <label for="full_namename" class="form-label">Tên của bạn<span class="text-danger fs-5">*</span></label>
+                        <input type="text" class="form-control" formControlName="fullname"/>
                     </div>
                     <div class="col-md-6">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="email">
+                        <label for="email" class="form-label">Email<span class="text-danger fs-5">*</span></label>
+                        <input type="text" class="form-control" formControlName="email"/>
                     </div>
                     <div class="col-md-6">
-                        <label for="phone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" id="phone">
+                        <label for="phone" class="form-label">Số điện thoại<span class="text-danger fs-5">*</span></label>
+                        <input type="text" class="form-control" formControlName="phone">
                     </div>
                     <div class="col-md-6">
-                        <label for="address" class="form-label">Địa chỉ</label>
-                        <input type="address" class="form-control" id="address">
+                        <label for="address" class="form-label">Địa chỉ <span class="text-danger fs-5">*</span></label>
+                        <input type="address" class="form-control" formControlName="user_address">
                     </div>
                     <div class="col-12">
-                        <label for="description" class="form-label">Nội dụng bạn quan tâm</label>
-                        <textarea rows="3" class="form-control" id="description"></textarea>
+                        <label for="description" class="form-label">Nội dụng bạn quan tâm <span class="text-danger fs-5">*</span></label>
+                        <textarea rows="3" class="form-control" formControlName="content"></textarea>
                     </div>
                     <div class="mt-md-4">
-                        <button class="btn btn-success fs-4">Gửi <i class="ms-md-1 bi bi-arrow-up"></i></button>
+                        <button type="button" class="btn btn-success fs-4" (click)="sendInfo()">Gửi <i class="ms-md-1 bi bi-arrow-up"></i></button>
                     </div>
                 </form>
             </div>
         </div>
         <div class="col-md-6">
             <div>
-                <p class="fs-4 ms-md-3 text-secondary">Địa chỉ: F2/30/5, Ấp 6, Liên Ấp 2-6, xã Vĩnh Lộc A, Bình Chánh, TP.HCM</p>
-                <p class="fs-4 ms-md-3 text-secondary">Hotline: 0931.985.359</p>
-                <p class="fs-4 ms-md-3 text-secondary">Email: ABCgamil.com</p>
+                <p class="fs-4 ms-md-3 text-secondary">Địa chỉ: {{company.address}}</p>
+                <p class="fs-4 ms-md-3 text-secondary">Hotline: {{company.phone}}</p>
+                <p class="fs-4 ms-md-3 text-secondary">Email: {{company.email}}</p>
                 <p class="ms-md-3">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d232.90217118550743!2d106.57404426486474!3d10.818707032049396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zRjIvMzAvNSwg4bqkcCA2IExpw6puIOG6pHAgMi02LCB4w6MgVsSpbmggTOG7mWMgQSwgQsOsbmggQ2jDoW5oLCBUUC5IQ00!5e1!3m2!1svi!2s!4v1743568683786!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d232.90217118550743!2d106.57404426486474!3d10.818707032049396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zRjIvMzAvNSwg4bqkcCA2IExpw6puIOG6pHAgMi02LCB4w6MgVsSpbmggTOG7mWMgQSwgQsOsbmggQ2jDoW5oLCBUUC5IQ00!5e1!3m2!1svi!2s!4v1743568683786!5m2!1svi!2s" width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </p>
             </div>
         </div>

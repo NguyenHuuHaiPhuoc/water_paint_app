@@ -1,14 +1,14 @@
 <div class="container">
     <div class="row mt-md-4">
-        <div class="col-md-3">
+        <div class="col-md-3 list-category">
             <ul class="list-product ">
                 @for (i of listCategoryLV1s; track $index) {
                     <li class="text-uppercase fs-5 ">
-                        <a class="fw-bold text-decoration-none" href="hd-chemical/danh-muc/{{i.id}}">{{i.name}}</a>
+                        <a class="fw-bold text-decoration-none" href="hdchemicals/danh-muc/{{i.id}}">{{i.name}}</a>
                         <ul>
                             @for (i of listCategoryLV2s; track $index) {
                                 <li class="text-capitalize fs-6">
-                                    <a class="text-decoration-none" href="hd-chemical/san-pham/{{i.id}}">
+                                    <a class="text-decoration-none" href="hdchemicals/san-pham/{{i.id}}">
                                         {{i.name}}
                                     </a>
                                 </li>
@@ -20,7 +20,7 @@
                 } -->
             </ul>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 col-12">
             <router-outlet></router-outlet>
         </div>
     </div>

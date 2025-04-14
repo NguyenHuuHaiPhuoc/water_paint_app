@@ -6,13 +6,18 @@ img{
     height: 250px;
     margin-top: -10px;
 }
-h4{
+h4 a{
     color: #06465B;
 }
+
 
 @media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */
     .footer-logo img {
       width: 100px;
       height: 100px;
+    }
+    
+    .access{
+        display: none;
     }
 } 

@@ -11,9 +11,9 @@
         <div id="cCarousel-inner" [style.left.px]="leftValue" style="display: flex; gap: 20px; position: relative; transition: left 0.3s;">
           @for (item of items; track $index) {
             <article class="cCarousel-item">
-              <img [src]="item.image" [alt]="item.alt">
+              <img [src]="item.img" alt="No image">
               <div class="infos text-center">
-                <a href="" class="text-uppercase text-decoration-none text-secondary">{{ item.title }}</a>
+                <a [href]="'hdchemicals'+item.paths+item.id" class="text-uppercase text-decoration-none text-secondary">{{ item.name }}</a>
               </div>
             </article>
           }

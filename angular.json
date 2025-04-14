@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "water-paint-app-v1": {
+    "printing-ink": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/water-paint-app-v1",
+            "outputPath": "dist/printing-ink",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "water-paint-app-v1:build:production"
+              "buildTarget": "printing-ink:build:production"
             },
             "development": {
-              "buildTarget": "water-paint-app-v1:build:development"
+              "buildTarget": "printing-ink:build:development"
             }
           },
           "defaultConfiguration": "development"

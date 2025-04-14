@@ -8,3 +8,9 @@
    height: 30rem;
    margin: 0px;
 }
+
+@media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */
+    .banner{
+        width: 100%;
+     }
+} 

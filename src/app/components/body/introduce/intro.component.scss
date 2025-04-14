@@ -21,3 +21,33 @@ h5{
     margin-top: 70px !important;
     background-repeat: no-repeat;
 }
+#landmarkCarousel{
+    display: none;
+}
+
+@media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */
+    .vision{
+        width: 100%;
+        height: 500px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .prize{
+        margin-top: -12rem;
+    }
+
+    #landmarkCarousel{
+        display: block;
+    }
+    #landmarkCarousel .carousel-inner{
+        margin-left: 3rem;
+    }
+    .carousel-control-prev-icon, .carousel-control-next-icon {
+        background-color: black;
+    }
+
+    .landmark{
+        display: none;
+    }
+} 

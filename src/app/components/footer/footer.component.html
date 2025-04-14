@@ -2,44 +2,63 @@
     <div class="container">
         <div class="row mt-md-3">
             <div class="col-md-3 col-12 mt-3 mt-md-0 footer-logo">
-                <a href="hd-chemical"><img src="assets/imgs/logo.png" alt="No logo"/></a>
+                <a href="hdchemicals"><img src="assets/imgs/logo.png" alt="No logo"/></a>
             </div>
             <div class="col-md-3 col-12">
-                <h4 class="mb-md-4">Trang chủ</h4>
-                <h4 class="mb-md-4">Giới thiệu</h4>
-                <h4 class="mb-md-4">Danh mục</h4>
-                <div class="d-flex flex-column gap-md-2">
+                <h4 class="mb-md-3"><a class="text-decoration-none" href="#">Trang chủ</a></h4>
+                <h4 class="mb-md-3"><a class="text-decoration-none" href="hdchemicals/gioi-thieu">Giới thiệu</a></h4>
+                <h4 class="mb-md-3">Danh mục</h4>
+                <!-- <div class="d-flex flex-column gap-md-2">
                     @for (i of catelogs; track $index) {
                         @if(!i.is_del){
-                            <a class="text-decoration-none text-dark" [href]="'hd-chemical/danh-muc/' + i.name">{{i.name}}</a>
+                            <a class="text-decoration-none text-dark" [href]="'hdchemicals/danh-muc/' + i.name">{{i.name}}</a>
                         }
                     }
-                </div>
-                <h4 class="mb-md-4">Tư vấn</h4>
-                <h4 class="mb-md-4">Liên hệ</h4>
+                </div> -->
+                <h4 class="mb-md-3">
+                    <a href="hdchemicals/tu-van-san-pham" class="text-decoration-none">Tư vấn</a>
+                </h4>
+                <h4 class="mb-md-3">
+                    <a href="hdchemicals/lien-he" class="text-decoration-none">Liên hệ</a>
+                </h4>
             </div>
-            <div class="col-md-3 col-12">
-                <h4 class="mb-md-4">Tư vấn sản phẩm</h4>
+            <div class="col-md-3 col-12 ">
+                <!-- <h4 class="mb-md-3">Tư vấn sản phẩm</h4>
                 <div class="d-flex flex-column gap-md-2">
                     <span>Tin tức an toàn, an ninh</span>
                     <span>Xu hướng đổi trong ngành hóa chất mực in</span>
+                </div> -->
+                <h4>Liên hệ chúng tôi</h4>
+                <div class="mt-md-4 d-flex flex-column gap-md-2">
+                    <span>
+                        {{company.name}}
+                    </span>
+                    <span>
+                        Địa chỉ: {{company.address}}
+                    </span>
+                    <span>
+                        Điện thoại: {{company.phone}}
+                    </span>
+                    <span>
+                        Email: {{company.email}}
+                    </span>
                 </div>
             </div>
             <div class="col-md-3 col-12 mb-3">
-                <h4>Liên hệ chúng tôi</h4>
-                <div class="mt-md-4 d-flex flex-column gap-md-2">
-                    <span class="d-flex gap-4">
-                        <a><i class="bi bi-facebook fs-2 text-primary"></i></a>
-                        <a><i class="bi bi-twitter fs-2 text-info"></i></a>
-                        <a><i class="bi bi-phone fs-2 text-warning"></i></a>
-                    </span>
-                    <span>
-                        CÔNG TY THƯƠNG MẠI - DỊCH VỤ HD CHEMICAL
-                    </span>
-                    <span>
-                        Địa chỉ: F2/30/5, Ấp 6, Liên Ấp 2-6, xã Vĩnh Lộc A, Bình Chánh, TP.HCM
-                    </span>
-                </div>
+                <span class="d-flex flex-md-column ms-md-5 mt-2 mt-md-0 gap-4">
+                    <a role="button">
+                        <i class="bi bi-facebook fs-2 text-primary"></i>
+                        <span class="access">Truy cập fanpage</span>
+                    </a>
+                    <a role="button">
+                        <i class="bi bi-tiktok fs-2 text-dark"></i>
+                        <span class="access">Theo dõi chúng tôi</span>
+                    </a>
+                    <a role="button">
+                        <i class="bi bi-phone fs-2 text-warning"></i>
+                        <span class="access">Tìm đến chúng tôi</span>
+                    </a>
+                </span>
             </div>
         </div>
     </div>

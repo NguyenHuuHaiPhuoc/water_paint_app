@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CategoriService } from '../../../service/categori.service';
 
 @Component({
@@ -41,14 +41,28 @@ export class ListProductComponent implements OnInit{
   public catelogLV2s :any;
 
   public cateID:any;
-
   
-
   constructor(
     private localtion: Location,
     private catelogService: CategoriService
-  ) {}
-
+  ) {
+    this.updateScreenWidth();
+  }
+  
+  public visible: boolean = false;
+  @HostListener('window:scroll',[])
+  onWindowScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop 
+    || document.body.scrollTop || 0;
+    this.visible = scrollPosition > 300;
+  }
+  
+  public screenWidth: number = 0;
+  @HostListener('window:size', [])
+  onResize() {
+    this.updateScreenWidth();
+  }
+  
   ngOnInit(): void {
     
     this.cateID = this.localtion.path().split('/');
@@ -67,7 +81,7 @@ export class ListProductComponent implements OnInit{
       }
     });
   }
-
+  
   private loadData(){
     const req = {
       id: this.cateID
@@ -82,6 +96,11 @@ export class ListProductComponent implements OnInit{
         console.error(err);
       }
     });
+  }
+  
+
+  private updateScreenWidth() {
+    this.screenWidth = window.innerWidth;
   }
 
   public getPath():string {

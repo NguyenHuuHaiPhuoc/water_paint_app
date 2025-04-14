@@ -5,3 +5,19 @@
     width: 100%;
     height: 300px;
 }
+.offcanvasCategory{
+    display: none;
+}
+
+@media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */
+    .info-category {
+        margin-bottom: 2rem;
+    }
+    .offcanvasCategory{
+        position: fixed;
+        display: none;
+        right: 45px;
+        bottom: 30rem;
+        z-index: 99;
+    }
+} 

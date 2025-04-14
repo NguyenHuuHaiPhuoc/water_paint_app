@@ -15,12 +15,17 @@ import {
 import Swal from 'sweetalert2';
 import { UploadImage } from '../../../../../service/uploadImage.service';
 import { Router } from '@angular/router';
-import { selectValidator } from '../../../../../validators/selectValidator';
+import { PaginationComponent } from '../../../../pagination/pagination.component';
 
 declare var $: any;
 @Component({
   selector: 'app-product-manager',
-  imports: [FormsModule, ReactiveFormsModule, AngularEditorModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    AngularEditorModule,
+    PaginationComponent
+  ],
   templateUrl: './product-manager.component.html',
   styleUrl: './product-manager.component.scss',
   providers: [ProductService, CategoriService, UploadImage],
@@ -50,11 +55,12 @@ export class ProductManagerComponent implements OnInit {
       cateLV1: ['', Validators.required],
       cateLV2: ['', Validators.required],
       description: [null, Validators.required],
-      info: [null, Validators.required],
+      intro_product: [null, Validators.required],
       application: [null, Validators.required],
       quantity: [null],
       production_date: [null],
-      weights: [null]
+      weights: [null],
+      paths: '/san-pham-chi-tiet/'
     });
   }
 
@@ -104,7 +110,7 @@ export class ProductManagerComponent implements OnInit {
     });
   }
 
-  public create() {
+  public async create() {
     const req = {
       name: this.formProduct.get('name')?.value,
       chemical: this.formProduct.get('chemical')?.value,
@@ -116,69 +122,43 @@ export class ProductManagerComponent implements OnInit {
         id: $('#catelog2').val(),
       },
       production_date: this.formProduct.get("production_date")?.value,
-      weights: this.formProduct.get("weights")?.value
+      weights: this.formProduct.get("weights")?.value,
+      intro_product: this.formProduct.get('intro_product')?.value,
+      applications: this.formProduct.get('application')?.value,
+      img: 'NULL',
+      paths: this.formProduct.value.paths
     };
 
-    this.productService.create(req).subscribe({
-      next: (resp) => {
-        if (resp.status == 201) {
-          this.createDetail(resp.result.id);
-        }
-        if (resp.status == 401) {
-          Swal.fire({
-            title: resp.message,
-            icon: 'error',
-            draggable: true,
-          });
-          return;
-        }
-      },
-      error(err) {
-        console.error(err);
-      },
-    });
-  }
-
-  private async createDetail(productID: any) {
     if (this.imgUpload) {
       this.uploadService
-        .uploadFile('water_paint/product/image', this.imgUpload)
-        .subscribe(
-          (url) => {
-            console.log(url);
-            if (url) {
-              const req = {
-                intro_product: this.formProduct.get('info')?.value,
-                applications: this.formProduct.get('application')?.value,
-                product: {
-                  id: productID,
-                },
-                img: url,
-              };
-
-              this.productService.createDetail(req).subscribe({
-                next: (resp) => {
-                  if (resp.status == 201) {
-                    Swal.fire({
-                        title: resp.message,
-                        icon: 'success',
-                        draggable: true,
-                      });  
-                    this.loadProduct();
-                  }
-
-                  if (resp.status == 401) {
-                    Swal.fire({
-                      title: resp.message,
-                      icon: 'error',
-                      draggable: true,
-                    });
-                  }
-                },
-                error(err) {
-                  console.error(err);
-                },
-              });
+      .uploadFile('water_paint/product/image', this.imgUpload)
+      .subscribe(
+        (url) => {
+          if (url) {
+            req.img = url.toString();
+            this.productService.create(req).subscribe({
+              next: (resp) => {
+                if (resp.status == 201) {
+                  Swal.fire({
+                    title: resp.message,
+                    icon: 'success',
+                    draggable: true,
+                  });
+                  this.loadProduct();
+                }
+                if (resp.status == 401) {
+                  Swal.fire({
+                    title: resp.message,
+                    icon: 'error',
+                    draggable: true,
+                  });
+                  return;
+                }
+              },
+              error(err) {
+                console.error(err);
+              },
+            });
             }
           },
           (error) => {
@@ -186,16 +166,7 @@ export class ProductManagerComponent implements OnInit {
           }
         );
     } else{
-        const req = {
-            intro_product: this.formProduct.get('info')?.value,
-            applications: this.formProduct.get('application')?.value,
-            product: {
-              id: productID,
-            },
-            img: null,
-          };
-
-          this.productService.createDetail(req).subscribe({
+          this.productService.create(req).subscribe({
             next: (resp) => {
               if (resp.status == 201) {
                 Swal.fire({
@@ -205,7 +176,7 @@ export class ProductManagerComponent implements OnInit {
                   });  
                 this.loadProduct();
               }
-
+  
               if (resp.status == 401) {
                 Swal.fire({
                   title: resp.message,
