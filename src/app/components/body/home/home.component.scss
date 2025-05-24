@@ -1,102 +1,109 @@
-
-#cCarousel {
-    position: relative;
-    max-width: 900px;
-    margin: auto;
-  }
-  
-  #cCarousel .arrow {
-    position: absolute;
-    top: 50%;
-    display: flex;
+.banner-item{
+  margin-top: -20px;
+}
+  .best-seller img{
     width: 45px;
     height: 45px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    z-index: 1;
-    font-size: 40px;
-    color: #06465B;
-    // background: #00000072;
-    cursor: pointer;
+    z-index:2 !important;
+    left: -27px;
+    background-color: #fff;
   }
-  
-  #cCarousel #prev {
-    left: 0px;
+  .best-seller div{
+    width: 235px;
+    height:1px;
+    border: 1px solid red;
+    left: -7.5rem;
+    top: 18px;
+    z-index: 1 !important;
   }
-  
-  #cCarousel #next {
-    right: 0px;
-    pointer-events: auto;
-    visibility: visible;
-  }
-  
-  #carousel-vp {
-    width: 770px;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    margin: auto;
-  }
-  
-  @media (max-width: 770px) {
-    #carousel-vp {
-      width: 510px;
-    }
-  }
-  
-  @media (max-width: 510px) {
-    #carousel-vp {
-      width: 250px;
-    }
-  }
-  
-  #cCarousel #cCarousel-inner {
-    display: flex;
-    position: absolute;
-    transition: 0.3s ease-in-out;
-    gap: 10px;
-    left: 0px;
-  }
-  
-  .cCarousel-item {
-    width: 250px;
-    height: 365px;
-    border: 2px solid white;
-    border-radius: 15px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .cCarousel-item img {
-    width: 100%;
-    object-fit: cover;
-    min-height: 246px;
-    color: white;
-  }
-  
-  .cCarousel-item .infos {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    background: white;
-    color: black;
-  }
-  
-  .cCarousel-item .infos button {
-    background: #222;
-    padding: 10px 30px;
-    border-radius: 15px;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-  }
+.list-product{
+  margin-top: 5rem;
+  margin-left: 10px;
+}
+.card {
+ width: 190px;
+ height: 330px;
+ margin-bottom: 10px;
+ padding: .8em;
+ background: linear-gradient(180deg, #06465c, #f5efef);
+ position: relative;
+ overflow: visible;
+ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.card-img {
+ height: 55%;
+ width: 100%;
+ background-color: #fff;
+ margin-top: 5px;
+ border-radius: .5rem;
+ transition: .3s ease;
+}
+
+.card-img img{
+  height: 100%;
+   width: 100%;
+   border-radius: .5rem;
+}
+
+.card-info {
+ padding-top: 10%;
+}
+
+.card-footer {
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding-top: 10px;
+ border-top: 1px solid #ddd;
+}
+
+/*Text*/
+.text-title {
+ font-weight: 900;
+ font-size: 1.2em;
+ line-height: 1.5;
+}
+
+.text-body {
+ font-size: .9em;
+ padding-bottom: 10px;
+}
+
+/*Hover*/
+.card-img:hover {
+ transform: translateY(-25%);
+ box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
+}
+
+/* From Uiverse.io by cssbuttons-io */ 
+button {
+  padding: 1.3em 3em;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover {
+  background-color: #175469;
+  box-shadow: 0px 15px 20px rgba(23 ,84 ,105 , 0.35);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+button:active {
+  transform: translateY(-1px);
+}
 
   .product{
     max-width: 300px;
@@ -123,10 +130,23 @@
 }
 
 @media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */
+  .banner-item img{
+    width: 100%;
+  }
   .about-us_img{
     margin-top: 1rem;
   }
   .about-us_img img{
     height: 200px;
   }
-} 
+  .about-us{
+    margin-top: 5rem;
+  }
+  .card{
+    width: 150px;
+  }
+  .list-product{
+    margin-top: 5rem;
+    margin-left: -1px;
+  }
+}

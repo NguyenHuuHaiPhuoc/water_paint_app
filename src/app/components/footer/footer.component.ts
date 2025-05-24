@@ -23,7 +23,7 @@ export class FooterComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-      this.loadCatelog();
+      // this.loadCatelog();
   }
 
   private loadCatelog(){

@@ -5,19 +5,25 @@ import { Observable } from "rxjs";
 @Injectable()
 export class ProductService{
 
-    private apiURL =  'http://localhost:8080/api';
+    private apiURL =  'https://hdchemicals.vn:8444/api';
 
     constructor(
         private http: HttpClient
     ){}
 
-    public findAll():Observable<any> {
-        return this.http.get<any>(this.apiURL + '/find/products');
+    public findAll(page?:any,size?:any):Observable<any> {
+        const currentPage = page !== undefined ? '?page='+page : '';
+        const sizePage = size !== undefined ? '&size='+size : '';
+        return this.http.get<any>(this.apiURL + '/find/products' + currentPage + sizePage);
     }
 
-    public findProductByCateID(id:any):Observable<any> {
-        return this.http.get<any>(this.apiURL + `/find/product/by/category/${id}`);
+    public searchProduct(value:string):Observable<any> {
+        return this.http.get<any>(this.apiURL + '/search/product?search=' + value)
     }
+
+    // public findProductByCateID(id:any):Observable<any> {
+    //     return this.http.get<any>(this.apiURL + `/find/product/by/category/${id}`);
+    // }
 
     public create(req:any):Observable<any> {
         return this.http.post<any>(this.apiURL+'/create/product',req);
@@ -29,13 +35,5 @@ export class ProductService{
 
     public delete(req:any):Observable<any>{
         return this.http.patch<any>(this.apiURL + '/delete/product',req);
-    }
-
-    public createDetail(req:any):Observable<any> {
-        return this.http.post<any>(this.apiURL + "/create/detail", req);
-    }
-
-    public updateDetail(req:any):Observable<any> {
-        return this.http.put<any>(this.apiURL + "/update/detail", req);
     }
 }

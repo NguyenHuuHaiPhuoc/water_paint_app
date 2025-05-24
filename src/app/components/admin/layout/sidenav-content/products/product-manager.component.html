@@ -1,6 +1,6 @@
 <div class="row mx-4">
   <div class="col-md-4">
-    <ul class="list-group mb-md-3">
+    <ul class="list-group">
       <li class="list-group-item active text-center fs-5" aria-current="true">Danh mục</li>
       <li class="list-group-item text-center">
         <form class="d-flex" role="search">
@@ -8,37 +8,56 @@
         </form>
       </li>
     </ul>
-    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticAddProduct">Thêm mới <i class="bi bi-plus-circle-fill"></i></button>
+    @if(listProductSearch){
+      <div class="list-group product-search">
+        @for(i of listProductSearch; track $index){
+          <a (click)="viewProductDetail(i)" class="list-group-item list-group-item-action">{{i.name}}</a>
+        }
+      </div>
+    }
+    <button class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#staticAddProduct">Thêm mới <i class="bi bi-plus-circle-fill"></i></button>
   </div>
   <div class="col-md-8">
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered">
       <thead class="table-dark">
         <tr>
-          <th scope="col">#</th>
+          <!-- <th scope="col">#</th> -->
           <th scope="col">Tên sản phẩm</th>
-          <th scope="col">Hóa chất</th>
+          <th scope="col">Số LOT</th>
           <th scope="col">Mô tả</th>
-          <th scope="col"></th>
+          <th scope="col">Xóa</th>
         </tr>
       </thead>
       <tbody>
         @for (i of lisProductFiter; track $index) {
           @if(!i.is_del){
             <tr>
-              <th scope="row">{{lisProductFiter.length - (lisProductFiter.length - ($index+1))}}</th>
-              <td role="button" class="text-decoration-underline" (click)="viewProductDetail(i);">
+              <!-- <th scope="row">{{$index}}</th> -->
+              <td role="button" class="text-decoration-underline" (click)="viewProductDetail(i)">
                 {{i.name}}
               </td>
-              <td>{{i.chemical}}</td>
+              <td>{{i.lot_number}}</td>
               <td>{{i.description}}</td>
-              <td><button class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
+              <td>
+                <button class="btn btn-danger" (click)="delete(i.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
             </tr>
           }
         }
       </tbody>
     </table>
     <div class="">
-      <app-pagination></app-pagination>
+      <div>
+        <button class="me-3" [disabled]="isPrevDisabled" (click)="pagination('prev')">
+          <i class="bi bi-arrow-left-circle"></i>
+        </button>
+        
+        <button class="me-3" [disabled]="isNextDisabled" (click)="pagination('next')">
+          <i class="bi bi-arrow-right-circle"></i>
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -57,26 +76,15 @@
             <div class="col">
               <label class="form-label">Tên sản phẩm</label>
               <input type="text" class="form-control" autocomplete="off" formControlName="name"/>
-              @if(formProduct.controls['name'].invalid 
-                  && (formProduct.controls['name'].touched || formProduct.controls['name'].dirty)){
-                @if(formProduct.controls['name'].errors){
-                  <div id="emailHelp" class="form-text text-warning">Hãy nhập tên sản phẩm!</div>
-                }
-              }
+              
             </div>
             <div class="col">
-              <label class="form-label">Hóa chất</label>
+              <label class="form-label">Số LOT</label>
               <input type="text" class="form-control" autocomplete="off" formControlName="chemical"/>
-              @if(formProduct.controls['chemical'].invalid 
-                  && (formProduct.controls['chemical'].touched || formProduct.controls['chemical'].dirty)){
-                @if(formProduct.controls['chemical'].errors){
-                  <div class="form-text text-warning">Hãy nhập tên hóa chất!</div>
-                }
-              }
             </div>
             <div class="col d-md-flex gap-md-2">
               <div class="upload-img text-center">
-                <img  [src]="imgAddProduct?imgAddProduct:'/assets/imgs/no-avatar.jpg'" alt="No Image"/>
+                <img  [src]="imgAddProduct?imgAddProduct:'/assets/imgs/no-image.png'" alt="No Image"/>
                 <input type="file" [hidden]="true" #uploadImgAddProduct (change)="chooseImgAddProduct($event)"/>
               </div>
               <div>
@@ -94,10 +102,10 @@
               <input type="number" class="form-control" autocomplete="off" formControlName="weights"/>
             </div>
           </div>
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <label class="form-label">Số lượng</label>
             <input type="number" class="form-control" autocomplete="off" formControlName="quantity"/>
-          </div>
+          </div> -->
           <div class="row mb-md-3">
             <div class="col">
               <label class="form-label"></label>
@@ -144,32 +152,11 @@
               }
             }
           </div>
-          <div class="mb-3">
-            <label class="form-label">Thông tin sản phẩm</label>
-            <angular-editor formControlName="intro_product" [config]="editorConfig"></angular-editor>
-            @if(formProduct.controls['intro_product'].invalid 
-                && (formProduct.controls['intro_product'].touched || formProduct.controls['intro_product'].dirty)){
-              @if(formProduct.controls['intro_product'].errors){
-                <div class="form-text text-warning">Hãy nhập thông tin của sản phẩm!</div>
-              }
-            }
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Ứng dụng</label>
-            <angular-editor formControlName="application" [config]="editorConfig"></angular-editor>
-            @if(formProduct.controls['application'].invalid 
-                && (formProduct.controls['application'].touched || formProduct.controls['application'].dirty)){
-              @if(formProduct.controls['application'].errors){
-                <div class="form-text text-warning">Hãy nhập ứng dụng của sản phẩm!</div>
-              }
-            }
-          </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="create()" [disabled]="!formProduct.valid">Thêm</button>
+        <button type="button" class="btn btn-primary" (click)="create()">Thêm</button>
       </div>
     </div>
   </div>
 </div>
-<!-- <app-detail [product]="product" [hidden]="true"></app-detail> -->

@@ -2,17 +2,21 @@
     <div class="row mx-md-4">
         <div class="col-md-4">
             <div class="mb-md-3">
-                <div class="produc-image">
-                    <div class="mx-auto">
-                        <img [src]="imgReview?imgReview:'assets/imgs/no-image.png'" alt="No image" />
+                <div class="product-image">
+                    <div class="text-center">
+                        <img [src]="(imgReview)?imgReview:'assets/imgs/no-image.png'" alt="No image" />
                         <input type="file" id="product_image" [hidden]="true" #uploadProductImage (change)="chooseImgUpdateProduct($event)"/>
                     </div>
                 </div>
             </div>
             <div class="d-md-flex justify-content-center gap-md-3 mb-md-3">
-                <button type="button" class="btn btn-primary" (click)="uploadProductImage.click()">Tải ảnh</button>
+                <button type="button" class="btn btn-primary" 
+                    (click)="uploadProductImage.click()">Tải ảnh</button>
                 <button type="button" class="btn btn-secondary" (click)="removeImage()">Xóa</button>
             </div>
+            
+        </div>
+        <div class="col-md-8">
             <div class="row mb-md-3">
                 <label for="product_name" class="col-md-4 form-label fw-bold">Tên sản phẩm</label>
                 <div class="col-md-8">
@@ -21,15 +25,15 @@
                 </div>
             </div>
             <div class="row mb-md-3">
-                <label for="chemicals" class="col-md-4 form-label fw-bold">Hóa chất</label>
+                <label for="lot_number" class="col-md-4 form-label fw-bold">Số LOT</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" id="chemicals" formControlName="chemical">
+                    <input type="text" class="form-control" id="lot_number" formControlName="lot_number">
                 </div>
             </div>
             <div class="row mb-md-3">
-                <label for="chemicals" class="col-md-4 form-label fw-bold">Ngày sản xuất</label>
+                <label class="col-md-4 form-label fw-bold">Ngày sản xuất</label>
                 <div class="col-md-8">
-                    <input type="date" class="form-control" id="chemicals" formControlName="production_date">
+                    <input type="datetime" class="form-control" formControlName="production_date">
                 </div>
             </div>
             <div class="row mb-md-3">
@@ -44,24 +48,15 @@
                     <input type="number" class="form-control" autocomplete="off" formControlName="quantity"/>
                 </div>
             </div>
+            <div class="mb-3">
+                <label for="description" class="form-label fw-bold">Mô tả</label>
+                <textarea name="" 
+                formControlName="description" rows="3" class="form-control" ></textarea>
+            </div>
             <div class="position-relative mt-md-3">
                 <div class="action-product">
                     <button type="button" class="btn btn-success" (click)="update()">Cập nhật <i class="bi bi-pencil-fill"></i></button>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="mb-3">
-                <label for="description" class="form-label fw-bold">Mô tả</label>
-                <textarea name="" formControlName="description" rows="3" class="form-control" ></textarea>
-            </div>
-            <div class="mb-3">
-                <label class="form-label fw-bold">Thông tin sản phẩm</label>
-                <angular-editor formControlName="intro_product" [config]="editorConfig"></angular-editor>
-            </div>
-            <div class="mb-3">
-                <label class="form-label fw-bold">Ứng dụng</label>
-                <angular-editor formControlName="applications" [config]="editorConfig"></angular-editor>
             </div>
         </div>
     </div>

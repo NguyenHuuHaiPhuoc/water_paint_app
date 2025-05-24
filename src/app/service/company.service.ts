@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 @Injectable()
 
 export class CompanyService{
-    private api_url = 'http://localhost:8080/api';
+    private api_url = 'https://hdchemicals.vn:8444/api';
 
     constructor(
         private http: HttpClient

@@ -1,23 +1,16 @@
 .footer{
     border-top: 50px solid #06465B;
 }
-img{
-    width: 250px;
-    height: 250px;
-    margin-top: -10px;
-}
-h4 a{
+h5 a{
     color: #06465B;
 }
 
-
-@media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */
-    .footer-logo img {
-      width: 100px;
-      height: 100px;
-    }
-    
+@media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */    
     .access{
+        display: none;
+    }
+
+    .contact-us{
         display: none;
     }
 } 

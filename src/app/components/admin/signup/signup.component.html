@@ -4,15 +4,46 @@
         <p class="title fs-4 text-uppercase">Chào mừng đến với chúng tôi</p>
         <form class="form position-relative" [formGroup]="signupForm">
             <input type="email" class="input" placeholder="Email" formControlName="email" />
-            <input type="password" class="input" placeholder="Mật khẩu" formControlName="password" />
-            <i class="bi bi-eye position-absolute"></i>
-            <i class="bi bi-eye-slash position-absolute"></i>
+            @if(signupForm.controls['email'].invalid 
+                  && (signupForm.controls['email'].touched || signupForm.controls['email'].dirty)){
+                @if(signupForm.controls['email'].errors){
+                  <div class="text-warning">Email chưa hợp lệ!</div>
+                }
+              }
+              <div class="password-container">
+                  <input id="password" type="password" class="input" placeholder="Mật khẩu"
+                    formControlName="password" />
+                    
+                    @if(eye) {
+                        <i class="bi bi-eye position-absolute" role="button" (click)="hide()"></i>
+                    } @else{
+                        <i class="bi bi-eye-slash position-absolute" role="button" (click)="show()"></i>
+                    }
+              </div>
+            @if(signupForm.controls['password'].invalid 
+                          && (signupForm.controls['password'].touched || signupForm.controls['password'].dirty)){
+                        @if(signupForm.controls['password'].errors){
+                          <div class="form-text text-warning">Hãy nhập mật khẩu!</div>
+                        }
+                      }
             <input type="text" class="input" placeholder="Họ và tên" formControlName="full_name" />
+            @if(signupForm.controls['full_name'].invalid 
+                  && (signupForm.controls['full_name'].touched || signupForm.controls['full_name'].dirty)){
+                @if(signupForm.controls['full_name'].errors){
+                  <div class="form-text text-warning">Hãy nhập họ và tên!</div>
+                }
+              }
             <input type="text" class="input" placeholder="Số điện thoại" formControlName="phone" />
-            <button type="button" class="form-btn" (click)="sigup($event)">Đăng ký</button>
+            @if(signupForm.controls['phone'].invalid 
+                  && (signupForm.controls['phone'].touched || signupForm.controls['phone'].dirty)){
+                @if(signupForm.controls['phone'].errors){
+                  <div class="form-text text-warning">Số điện thoại chưa hợp lệ!</div>
+                }
+              }
+            <button type="button" class="form-btn" (click)="sigup($event)">Tạo tài khoản</button>
         </form>
-        <p class="sign-up-label text-center">
+        <!-- <p class="sign-up-label text-center">
             <a href="login" class="sign-up-link">Quay lại đăng nhập</a>
-        </p>
+        </p> -->
     </div>
 </div>

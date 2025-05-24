@@ -31,8 +31,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
-              "node_modules/font-awesome/css/font-awesome.min.css"
+              "node_modules/bootstrap-icons/font/bootstrap-icons.min.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -46,8 +45,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1.5mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -63,7 +62,11 @@
               "sourceMap": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "production",
+          "allowedCommonJsDependencies": [
+            "moment",
+            "faye-websocket"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -75,7 +78,10 @@
               "buildTarget": "printing-ink:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"

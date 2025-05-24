@@ -15,7 +15,9 @@ import {
 import Swal from 'sweetalert2';
 import { UploadImage } from '../../../../../service/uploadImage.service';
 import { Router } from '@angular/router';
-import { PaginationComponent } from '../../../../pagination/pagination.component';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { AESUtil } from '../../../../../util/aesUtil';
+// import * as CryptoJS from 'crypto-js';
 
 declare var $: any;
 @Component({
@@ -23,8 +25,7 @@ declare var $: any;
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    AngularEditorModule,
-    PaginationComponent
+    AngularEditorModule
   ],
   templateUrl: './product-manager.component.html',
   styleUrl: './product-manager.component.scss',
@@ -35,12 +36,18 @@ export class ProductManagerComponent implements OnInit {
   public listCatelog1: any;
   public listCatelog2: any;
   public lisProductFiter: any;
-  public lisProduct: any;
+  public listProductSearch: any;
   public account: any;
   public imgAddProduct: any = null;
   public imgReview: any;
   private imgUpload: any;
   public product:any = {};
+  public currentPage: number = 0;
+  public pageSize: number = 4;
+  public totalItems: number = 0;
+  public totalPages:number = 0;
+  public isPrevDisabled:any;
+  public isNextDisabled:any;
 
   constructor(
     private productService: ProductService,
@@ -51,7 +58,7 @@ export class ProductManagerComponent implements OnInit {
   ) {
     this.formProduct = this.fb.group({
       name: [null, Validators.required],
-      chemical: [null, Validators.required],
+      chemical: [null],
       cateLV1: ['', Validators.required],
       cateLV2: ['', Validators.required],
       description: [null, Validators.required],
@@ -67,7 +74,7 @@ export class ProductManagerComponent implements OnInit {
   ngOnInit(): void {
     this.loadData();
     this.loadProduct();
-    const accountConvert = localStorage.getItem('account');
+    const accountConvert = sessionStorage.getItem('id_token_claims_obj');
     if (accountConvert) this.account = JSON.parse(accountConvert);
   }
 
@@ -87,22 +94,28 @@ export class ProductManagerComponent implements OnInit {
     this.categoryService.findAllCatelogLV1().subscribe({
       next: (resp) => {
         if (resp.status == 201) {
-          this.listCatelog1 = resp.listResult;
+          this.listCatelog1 = resp.listResult.map(
+            (item:any) => JSON.parse(AESUtil.decrypt(item.encryptedData))
+          );
         }
       },
       error(err) {
         console.error(err);
       },
     });
+
   }
 
-  private loadProduct() {
-    this.productService.findAll().subscribe({
+  private loadProduct(page?:any, size?:any) {
+    this.productService.findAll(page,size).subscribe({
       next: (resp) => {
-        if (resp.status == 201) {
-          this.lisProductFiter = resp.listResult;
-          this.lisProduct = resp.listResult;
-        }
+        this.lisProductFiter = resp.content.map(
+          (productDTO:any) => JSON.parse(AESUtil.decrypt(productDTO.encryptedData))
+        );
+        this.totalItems = resp.totalElements;
+        this.isNextDisabled = resp.last;
+        this.isPrevDisabled = resp.first;
+        this.totalPages = resp.totalPages;
       },
       error(err) {
         console.error(err);
@@ -113,7 +126,7 @@ export class ProductManagerComponent implements OnInit {
   public async create() {
     const req = {
       name: this.formProduct.get('name')?.value,
-      chemical: this.formProduct.get('chemical')?.value,
+      lot_number: this.formProduct.get('chemical')?.value,
       description: this.formProduct.get('description')?.value,
       quantity: this.formProduct.get('quantity')?.value,
       create_by: this.account.id,
@@ -144,7 +157,7 @@ export class ProductManagerComponent implements OnInit {
                     icon: 'success',
                     draggable: true,
                   });
-                  this.loadProduct();
+                  this.loadProduct(this.currentPage,this.pageSize);
                 }
                 if (resp.status == 401) {
                   Swal.fire({
@@ -174,7 +187,7 @@ export class ProductManagerComponent implements OnInit {
                     icon: 'success',
                     draggable: true,
                   });  
-                this.loadProduct();
+                this.loadProduct(this.currentPage,this.pageSize);
               }
   
               if (resp.status == 401) {
@@ -194,17 +207,55 @@ export class ProductManagerComponent implements OnInit {
     $('#close-form').trigger('click');
   }
 
+  public delete(idItem:any){
+    if(idItem){
+      Swal.fire({
+        title: "Bạn chắc chắn muốn xóa?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Xác nhận",
+        cancelButtonText: "Hủy"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const req= {
+            id: idItem
+          }
+          this.productService.delete(req).subscribe({
+            next: (resp) => {
+              if(resp.status == 201){
+                Swal.fire({
+                  title: resp.message,
+                  icon: "success"
+                });
+                this.loadProduct(this.currentPage,this.pageSize);
+              }
+              if(resp.status == 401){
+                Swal.fire({
+                  title: resp.message,
+                  icon: "error"
+                });
+              }
+            },
+            error(err) {console.error(err);}
+          });
+          
+        }
+      });
+    }
+  }
+
   public viewCatelog2(e: Event) {
     const idCate = (e.target as HTMLSelectElement).value;
 
     if (idCate !== 'NO') {
-      const req = {
-        id: idCate,
-      };
-      this.categoryService.findByCateID(req).subscribe({
+      this.categoryService.findByCateID(idCate).subscribe({
         next: (resp) => {
           if (resp.status == 201) {
-            this.listCatelog2 = resp.listResult;
+            this.listCatelog2 = resp.listResult.map(
+              (item:any) => JSON.parse(AESUtil.decrypt(item.encryptedData))
+            )
           }
         },
         error(err) {
@@ -238,11 +289,12 @@ export class ProductManagerComponent implements OnInit {
         cateLV1: '',
         cateLV2: '',
         description: '',
-        info: '',
+        intro_product: '',
         application: '',
         quantity: '',
         production_date: '',
-        weights: ''
+        weights: '',
+        paths: ''
     });
     this.imgAddProduct = null;
   }
@@ -253,11 +305,40 @@ export class ProductManagerComponent implements OnInit {
     }
   }
 
+  private timeout:any = null;
   public searchProduct(e: Event){
     const value = (e.target as HTMLInputElement).value;
 
-    this.lisProductFiter = this.lisProduct.filter((item:any) => {
-      return JSON.stringify(item.name.toLowerCase()).includes(value.toLowerCase());
-    });
+    clearTimeout(this.timeout);
+    this.timeout = setTimeout(() => {
+      this.productService.searchProduct(value).subscribe({
+        next: (resp) => {
+          this.listProductSearch = resp.map(
+              (item:any) => JSON.parse(AESUtil.decrypt(item.encryptedData))
+            );
+        },
+        error(err) {console.error(err);}
+      })
+    }, 1000);
+  }
+
+  public pagination(action:any){
+    switch (action) {
+      case 'prev':
+        if (this.currentPage > 0) {
+          this.currentPage--;
+          this.loadProduct(this.currentPage,this.pageSize);
+        }
+        break;
+      case 'next':
+        if (!this.isNextDisabled) {
+          this.currentPage++;
+          this.loadProduct(this.currentPage,this.pageSize);
+        }
+        break;
+      default:
+        console.log('Unknown action.');
+        break;
+    }
   }
 }

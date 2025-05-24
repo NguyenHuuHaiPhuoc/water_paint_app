@@ -1,23 +1,104 @@
-.card img{
-    width: 238px;
+
+.card {
+ width: 230px;
+ height: 324px;
+ margin: 5px 0;
+ padding: .8em;
+ background: linear-gradient(180deg, #06465c, #f5efef) !important;
+ position: relative;
+ overflow: visible;
+ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
-.info-category img{
+.card-img {
+    height: 65%;
     width: 100%;
-    height: 300px;
+    background-color: white;
+    margin-top: 12px;
+    border-radius: .5rem;
+    transition: .3s ease;
+}
+.card-img img{
+  height: 100%;
+   width: 100%;
+   border-radius: .5rem;
+}
+.card-info {
+ padding-top: 6%;
+ text-align: center;
+}
+.card-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -8px;
+    padding-top: 6px;
+    border-top: 1px solid #ddd;
+}
+.text-title {
+ font-weight: 900;
+ font-size: 1.2em;
+ line-height: 1.5;
+}
+.text-body {
+ font-size: .9em;
+ padding-bottom: 10px;
+}
+.card-img:hover {
+ transform: translateY(-25%);
+ box-shadow: rgba(226, 196, 63, 0.25) 0px 13px 47px -5px, rgba(180, 71, 71, 0.3) 0px 8px 16px -8px;
+}
+.list-product{
+    margin-left: 5rem !important;
+}
+
+/* From Uiverse.io by cssbuttons-io */ 
+button {
+  padding: 1.3em 3em;
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+button:hover {
+  background-color: #ffcaa6;
+  box-shadow: 0px 15px 20px rgba(226, 196, 63, 0.25);
+  color: #fff;
+  transform: translateY(-7px);
+}
+button:active {
+  transform: translateY(-1px);
 }
 .offcanvasCategory{
     display: none;
 }
-
+.disabled {
+  pointer-events: none; /* Không cho click */
+  opacity: 0.5; /* Giảm độ rõ ràng */
+  cursor: not-allowed; /* Đổi con trỏ chuột */
+}
 @media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */
-    .info-category {
-        margin-bottom: 2rem;
+    .list-product{
+        margin-left: -15px !important;
     }
-    .offcanvasCategory{
-        position: fixed;
-        display: none;
-        right: 45px;
-        bottom: 30rem;
-        z-index: 99;
+    .card{
+        width: 170px;
+        height: 234px;
+    }
+    .card-img{
+        height: 47%;
+        margin-top: 5px;
+    }
+    button{
+        padding: 1em 3em;
+        font-size: 7px;
     }
 } 

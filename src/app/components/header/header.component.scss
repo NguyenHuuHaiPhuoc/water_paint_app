@@ -1,6 +1,6 @@
-.container{
+.container-fluid{
     display: flex;
-    gap:5rem;
+    gap: 10rem;
 }
 #fixNav{
     width: 100% !important;
@@ -9,13 +9,16 @@
     left: 0;
     z-index: 100;
     background-color: #FFFFFF !important;
-    border-bottom: 1px solid #06465B;
+}
+.logo{
+    margin-left: 5rem;
+    padding: 10px 0;
 }
 .logo img{
     margin: 0;
     padding: 0;
-    width: 150px;
-    height: 150px;
+    width: 80px;
+    height: 80px;
 }
 .banner{
     margin-top: 9.3rem !important;
@@ -26,4 +29,20 @@
    max-height: 60rem;
    height: 30rem;
    margin: 0px;
+}
+.navbar-nav{
+    gap: 3rem;
+}
+
+@media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */
+    .container-fluid{
+        display: flex;
+        gap: 5rem;
+    }
+    .navbar-nav{
+        gap: 0;
+    }
+    .navbar-nav .nav-link{
+        font-size: 15px !important;
+    }
 }

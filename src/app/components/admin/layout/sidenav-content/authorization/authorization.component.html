@@ -1,62 +1,60 @@
 <div class="mx-md-4">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="position-relative">
                     <span class="lable-card">Danh sách nhân sự</span>
                 </div>
                 <div class="card-body">
+                    <div>
+                        <input class="input" name="text" placeholder="Tên nhân viên..." type="search">
+                    </div>
                     <table class="table table-striped mt-md-3">
                         <thead class="table-dark">
                           <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col" class="text-center">Tên nhân viên</th>
                           </tr>
                         </thead>
                         <tbody>
+                            @for(i of listAccountFilter; track $index){
+                                <tr role="button" (click)="chooseEmployee(i)">
+                                    <th scope="row">{{i.full_name}}</th>
+                                </tr>
+                            }@empty{
+                                <tr><th class="fst-italic">Không có dữ liệu.</th></tr>
+                            }
                           <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>mdo</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>fat</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>twitter</td>
+                            
                           </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
                 <div class="position-relative">
                     <span class="lable-card">Vai trò đảm nhiệm</span>
                 </div>
                 <div class="card-body">
+                    <div class="ms-4">
+                        <p class="text-decoration-underline">
+                            <i class="bi bi-person-circle me-3"></i>{{fullName}}
+                        </p>
+                    </div>
                     <table class="table mt-md-3 text-center">
                         <thead>
                           <tr>
                             <th scope="col">Admin</th>
                             <th scope="col">Staff</th>
-                            <th scope="col">User</th>
+                            <th scope="col">Customer</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td>
                               <label>
-                                <input type="radio" name="a">
+                                <input type="radio" class="role" name="role" id="admin">
                                 <span>
                                     <i></i>
                                 </span>
@@ -64,7 +62,7 @@
                             </td>
                             <td>
                               <label>
-                                <input type="radio" name="a">
+                                <input type="radio" class="role" name="role" id="staff">
                                 <span>
                                     <i></i>
                                 </span>
@@ -72,7 +70,7 @@
                             </td>
                             <td>
                               <label>
-                                <input type="radio" name="a">
+                                <input type="radio" class="role" name="role" id="customer">
                                 <span>
                                     <i></i>
                                 </span>
@@ -81,6 +79,9 @@
                           </tr>
                         </tbody>
                     </table>
+                    <button class="border-secondary-subtle text-success mt-3" (click)="save()">
+                        <i class="bi bi-floppy-fill"></i> Lưu thay đổi
+                    </button>
                 </div>
             </div>
         </div>

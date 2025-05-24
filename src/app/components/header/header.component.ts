@@ -7,31 +7,12 @@ import { CategoriService } from '../../service/categori.service';
   imports: [],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
-  providers: [
-    CategoriService
-  ]
+  providers: []
 })
 export class HeaderComponent implements OnInit{
-  public catelogs:any = [];
 
-  constructor(
-    private catelogService: CategoriService
-  ){}
+  constructor(){}
 
   ngOnInit(): void {
-      this.loadCatelog();
-  }
-
-  private loadCatelog(){
-    this.catelogService.findAllCatelogLV1().subscribe({
-      next: (resp) => {
-        if(resp.status == 201){
-          this.catelogs = resp.listResult.filter((item:any) => !item.is_del);
-        }
-      },
-      error(err) {
-        console.error(err);
-      }
-    })
   }
 }

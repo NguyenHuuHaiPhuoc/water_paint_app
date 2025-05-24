@@ -1,7 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { CategoriService } from '../../../service/categori.service';
+import { Router } from '@angular/router';
+import { ProductService } from '../../../service/product.service';
+import { AESUtil } from '../../../util/aesUtil'
+import * as CryptoJS from 'crypto-js';
 
+declare var $:any;
 @Component({
   selector: 'app-list-product',
   imports: [
@@ -10,41 +14,21 @@ import { CategoriService } from '../../../service/categori.service';
   templateUrl: './list-product.component.html',
   styleUrl: './list-product.component.scss',
   providers: [
-    CategoriService
+    ProductService
   ]
 })
 export class ListProductComponent implements OnInit{
-  public listProduct = [
-    {
-      id: 1,
-      product_name: 'nguyên liệu sơn & xây dựng',
-      path: 'nguyen-lieu-son-hoa-chat'
-    },
-    {
-      id: 2,
-      product_name: 'hóa chất vải & dệt nhuộm',
-      path: 'hoa-chat-vai-det-nhuom'
-    },
-    {
-      id: 3,
-      product_name: 'bột màu hữu cơ',
-      path: 'bot-mau-huu-co'
-    },
-    {
-      id: 4,
-      product_name: 'phụ gia thực phẩm',
-      path: 'phu-gia-thuc-pham'
-    },
-  ];
-
-  public catelogLV1 :any;
-  public catelogLV2s :any;
+  public products:any = [];
+  public isPrev:any;
+  public isNext:any;
+  public totalPages:any = [];
+  public currentPage: number = 0;
 
   public cateID:any;
   
   constructor(
-    private localtion: Location,
-    private catelogService: CategoriService
+    private router: Router,
+    private productService: ProductService,
   ) {
     this.updateScreenWidth();
   }
@@ -65,47 +49,41 @@ export class ListProductComponent implements OnInit{
   
   ngOnInit(): void {
     
-    this.cateID = this.localtion.path().split('/');
-    this.cateID = this.cateID[this.cateID.length-1];
-
-    this.loadData();
-
-    this.catelogService.findByIdCategoryLV1(this.cateID).subscribe({
-      next: (resp) =>{
-        if(resp.status == 201 && !resp.result.is_del){
-          this.catelogLV1 = resp.result;
-        } 
-      },
-      error(err) {
-        console.error(err);
-      }
-    });
+    this.loadProducts(0,8);
   }
-  
-  private loadData(){
-    const req = {
-      id: this.cateID
-    }
-    this.catelogService.findByCateID(req).subscribe({
+
+  private loadProducts(page?:any, size?:any){
+    this.productService.findAll(page,size).subscribe({
       next: (resp) => {
-        if(resp.status == 201){
-          this.catelogLV2s = resp.listResult;
-        }
+        this.products = resp.content.map(
+          (productDTO:any) => JSON.parse(AESUtil.decrypt(productDTO.encryptedData))
+        );
       },
-      error(err){
-        console.error(err);
-      }
-    });
+      error(err) {console.error(err);}
+    })
   }
   
+  public next(){
+    if(!this.isNext){
+      this.currentPage++;
+      this.loadProducts(this.currentPage,8);
+    }
+  }
+
+  public prev(){
+    if(!this.isPrev){
+      this.currentPage--;
+      this.loadProducts(this.currentPage,8);
+    }
+  }
 
   private updateScreenWidth() {
     this.screenWidth = window.innerWidth;
   }
 
-  public getPath():string {
-    const url = this.localtion.path();
-    const path = url.split("/");
-    return path[path.length-1].toLocaleLowerCase();
+  public viewProductDetail(item:any){
+    this.router.navigate(['/san-pham/mo-ta-chi-tiet'], { 
+      state: { data: item }
+    });
   }
 }

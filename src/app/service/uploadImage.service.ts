@@ -34,4 +34,23 @@ export class UploadImage{
             ).subscribe();
         });
     }
+
+    public async deleteImageFireBase(urlImage:any, filePath:any){
+        const fileRef = this.storage.ref(filePath);
+        fileRef.listAll().subscribe((result) => {
+            result.items.forEach(async item => {
+                try {
+                    const url = await item.getDownloadURL();
+                    if(url.includes(urlImage)){
+                        await item.delete();
+                        console.log('Delete image in firebase successfully!')
+                    }else{
+                        console.log('Image not exits!')
+                    }
+                } catch (err) {
+                    console.error(`Lỗi khi lấy URL của ${item.name}:`, err)
+                }
+            });
+        });
+    }
 }

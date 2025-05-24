@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InfoContactService } from "../../../../../service/infoContact.service";
+import { AESUtil } from '../../../../../util/aesUtil';
 
 @Component({
     selector: 'app-contact-customer',
@@ -20,6 +21,12 @@ export class ContactCustomerComponent implements OnInit{
     public list:any = [];
     public listFilter:any = [];
     public formInfo: FormGroup;
+    public currentPage: number = 0;
+    public pageSize: number = 4;
+    public totalItems: number = 0;
+    public totalPages:number = 0;
+    public isPrevInfoCustomer:any;
+    public isNextInfoCustomer:any;
 
     constructor(
         private infoContactService: InfoContactService,
@@ -34,7 +41,9 @@ export class ContactCustomerComponent implements OnInit{
             content: [null],
             create_date: [null],
             is_del: false,
-            proccess_status: false
+            proccess_status: false,
+            productID: [null],
+            product_name: [null]
         });
     }
 
@@ -42,17 +51,20 @@ export class ContactCustomerComponent implements OnInit{
         this.loadListInfoContact();
     }
 
-    private loadListInfoContact(){
-        this.infoContactService.findAllInfoContact().subscribe({
+    private loadListInfoContact(page?:any, size?:any){
+        this.infoContactService.findAllInfoContact(page,size).subscribe({
             next: (resp) => {
-                if(resp.status == 201){
-                    this.list = resp.listResult;
-                    this.listFilter = resp.listResult;
-                }
-                // console.log(this.listFilter[0].is_del)
+                this.listFilter = resp.content.map(
+                    (item:any) => JSON.parse(AESUtil.decrypt(item.encryptedData))
+                );
+                console.log(resp);
                 if(this.listFilter.length > 0 && !this.listFilter[0].is_del){
                     this.viewInfoCustomer(this.listFilter[0]);
                 }
+                this.totalItems = resp.totalElements;
+                this.totalPages = resp.totalPages;
+                this.isPrevInfoCustomer = resp.first;
+                this.isNextInfoCustomer = resp.last;
             },
             error(err){
                 console.error(err);
@@ -72,7 +84,9 @@ export class ContactCustomerComponent implements OnInit{
                 content: item.content,
                 create_date: item.create_date,
                 is_del: item.is_del,
-                proccess_status: item.proccess_status
+                proccess_status: item.proccess_status,
+                productID: item.productID,
+                product_name: item.product_name
             });
         }
     }
@@ -85,4 +99,24 @@ export class ContactCustomerComponent implements OnInit{
             return JSON.stringify(item.fullname.toLowerCase()).includes(input.toLowerCase());
         });
     }
+
+    public paginationInfoCustomer(action:any){
+        switch (action) {
+          case 'prev':
+            if (this.currentPage > 0) {
+              this.currentPage--;
+              this.loadListInfoContact(this.currentPage,this.pageSize);
+            }
+            break;
+          case 'next':
+            if (!this.isNextInfoCustomer) {
+              this.currentPage++;
+              this.loadListInfoContact(this.currentPage,this.pageSize);
+            }
+            break;
+          default:
+            console.log('Unknown action.');
+            break;
+        }
+      }
 }

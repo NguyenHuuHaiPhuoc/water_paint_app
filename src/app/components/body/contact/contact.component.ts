@@ -20,7 +20,7 @@ import { CompanyService } from "../../../service/company.service";
 
 export class ContactComponent implements OnInit{
 
-    public company:any;
+    public company:any=[];
     public formInfo: FormGroup;
     constructor(
         private infoContactService: InfoContactService,

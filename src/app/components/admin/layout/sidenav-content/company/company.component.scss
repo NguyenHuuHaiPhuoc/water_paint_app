@@ -3,11 +3,18 @@
     max-width: 300px;
     max-height: 300px;
 }
-.logo img{
-    width: 150px;
-    height: 150px;
+.logo>div{
+    width: 200px;
+    height: 200px;
     border: 1px solid gray;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo img{
+    width: 140px;
+    height: 140px;
 }
 .input-focus:focus{
     border: none;

@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import { UploadImage } from "../../../../../service/uploadImage.service";
 import { AngularFireStorage } from "@angular/fire/compat/storage";
 import { ListResult } from "@angular/fire/storage";
+import moment from 'moment';
+import { AESUtil } from '../../../../../util/aesUtil'
 
 @Component({
     selector: 'app-employee',
@@ -57,11 +59,11 @@ export class EmployeeComponent implements OnInit{
 
     private loadData(){
         this.accountService.findAllAccount().subscribe({
-            next: (resp) => {
-                if(resp.status == 201){
-                    this.listAccount = resp.listResult;
-                    this.listAccountFilter = resp.listResult;
-                }
+            next: (data) => {
+                this.listAccountFilter = data.map(
+                    (item:any) => JSON.parse(AESUtil.decrypt(item.encryptedData))
+                );
+                this.listAccount = this.listAccountFilter;
                 this.viewAccount(this.listAccountFilter[0]);
             },
             error(err) {
@@ -77,7 +79,7 @@ export class EmployeeComponent implements OnInit{
                 full_name: account.full_name,
                 emp_code: account.emp_code,
                 gender: account.gender,
-                birthday: account.birthday,
+                birthday: moment(account.birthday).format('yyyy-mm-dd'),
                 hometown: account.hometown,
                 nationality: account.nationality,
                 no_cart: account.no_cart,
@@ -172,9 +174,9 @@ export class EmployeeComponent implements OnInit{
     public searchUser(e: Event){
         const inputValue = (e.target as HTMLInputElement).value;
 
-        this.listAccountFilter = this.listAccount.filter((item:any) => {
-            return JSON.stringify(item.full_name.toLowerCase()).includes(inputValue.toLowerCase());
-        });
+        this.listAccountFilter = this.listAccount.map(
+            (item:any) => item.toLowerCase().includes(inputValue.toLowerCase())
+        );
     }
 
     private saveAccount(req:any){

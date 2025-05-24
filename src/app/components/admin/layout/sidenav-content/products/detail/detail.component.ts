@@ -13,6 +13,8 @@ import {
 } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { UploadImage } from '../../../../../../service/uploadImage.service';
+import { AngularFireStorage } from "@angular/fire/compat/storage";
+import moment from 'moment';
 
 declare var $: any;
 @Component({
@@ -46,24 +48,20 @@ export class DetailComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private fb: FormBuilder,
-    private upload: UploadImage
+    private upload: UploadImage,
+    private storage: AngularFireStorage
     ) {
     this.formProduct = this.fb.group({
       id: [null],
       name: [null],
-      chemical: [null],
+      lot_number: [null],
       description: [null],
       quantity: [null],
       create_date: [null],
       create_by: [null],
       is_del: [null],
-      categoryLV2: {
-        id: [null],
-      },
       production_date: [null],
       weights: [null],
-      intro_product: [null],
-      applications: [null],
       img: [null],
       paths: [null],
     });
@@ -71,26 +69,23 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.product = history.state.item;
+    this.product.production_date = moment(this.product.production_date).format('DD-MM-YYYY');
     this.loadProduct(this.product);
   }
 
   public loadProduct(item:any) {
+    
     this.formProduct.setValue({
       id: item.id,
       name: item.name,
-      chemical: item.chemical,
+      lot_number: item.lot_number,
       description: item.description,
       quantity: item.quantity,
       create_date: item.create_date,
       create_by: item.create_by,
       is_del: item.is_del,
-      categoryLV2: {
-        id: item.categoryLV2.id,
-      },
       production_date: item.production_date,
       weights: item.weights,
-      intro_product: item.intro_product,
-      applications: item.applications,
       img: item.img,
       paths: item.paths,
     });
@@ -119,8 +114,10 @@ export class DetailComponent implements OnInit {
 
   public update() {
     if (this.formProduct.value.id) {
-    //   console.log(this.formProduct.value);
       if (this.imgUpload) {
+        if(this.formProduct.value.img){
+          this.upload.deleteImageFireBase(this.formProduct.value.img,'water_paint/product/image');
+        }
         this.upload
         .uploadFile('water_paint/product/image', this.imgUpload).subscribe(
             (url) => {

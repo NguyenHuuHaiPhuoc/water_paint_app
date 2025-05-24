@@ -1,25 +1,46 @@
 <div class="container">
-  <h3 class="mt-md-5 text-center mt-3">TƯ VẤN SẢN PHẨM</h3>
-  <app-carousel
-    [items]="carouselItems"
-    [visibleItems]="3">
-  ></app-carousel>
-  <h3 class="mt-md-5 text-center">SẢN PHẨM</h3>
-  
-  <div class="row">
-  <app-carousel
-    [items]="products"
-    [visibleItems]="3">
-  ></app-carousel>
-
-  <div class="row mb-3 mb-md-0 mx-auto">
-    <div class="col-12 col-md-6">
-        <h3 class="mt-md-5 text-info">VỀ CHÚNG TÔI</h3>
-        <p class="mt-md-4">Được thành lập và phát triển từ năm 1988, Công ty Hóa chất ABC được xem như một trong những người tiên phong trong lĩnh vực sản xuất và kinh doanh hóa chất tại Việt Nam. Với một nền móng vững chắc cùng bề dày lịch sử hoạt động, hiện nay chúng tôi trở thành một công ty có uy tín hàng đầu trong lĩnh vực Hóa chất tại Việt Nam.</p>
-        <a href="hdchemicals/gioi-thieu" class="btn btn-outline-info ">Khám phá ngay <i class="fa fa-arrow-right ms-md-3"></i></a>
+  <div class="row mt-4">
+    <div class="col-md-6 col-12">
+      <div class="banner-item">
+          <img src="assets/imgs/HD-Chemical.png" loading="lazy" alt="No image" />
+        </div>
     </div>
-    <div class="col-md-6 col-12 mt-md-5 about-us_img">
-      <img src="assets/imgs/muc-in-vai.jpg" alt="No image" loading="lazy">
+    <div class="col-md-6 col-12">
+      <div class="mt-md-4">
+          <h4 class="border-bottom pb-2">CÔNG TY TNHH THƯƠNG MẠI - DỊCH VỤ HD CHEMICAL</h4>
+          <p class="text-secondary lh-base">
+            Chúng tôi – HD Chemical – tự hào là đơn vị chuyên cung cấp mực in lụa chất lượng cao, đáp ứng mọi nhu cầu in ấn sáng tạo và chuyên nghiệp. Với cam kết mang đến sự sắc nét, bền màu và hiệu suất tối ưu, chúng tôi không chỉ là nhà cung cấp mà còn là đối tác đáng tin cậy của các doanh nghiệp in ấn.
+          </p>
+          <p class="text-secondary lh-base">
+            Từng giọt mực là sự kết tinh của công nghệ tiên tiến và tâm huyết, giúp nâng tầm giá trị sản phẩm của bạn. Dù là in trên vải, nhựa hay giấy, HD Chemical luôn đồng hành cùng bạn trong mỗi lần tạo dấu ấn!
+          </p>
+          <p class="text-secondary">Hãy để chất lượng nói lên thương hiệu – HD Chemical, nơi sắc màu thăng hoa!</p>
+        </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <h3 class="mt-md-5 mt-3">SẢN PHẨM</h3>
+    <span class="best-seller position-relative">
+      <img class="position-absolute" src="assets/icons/icon-best-seller.png" loading="lazy" alt="No icon" />
+      <div class="position-absolute"></div>
+    </span>
+    <div class="row list-product mx-md-5">
+      @for(i of products; track $index){
+        <div class="col-6 col-md-3 mb-3">
+          <div class="card">
+            <div class="card-img">
+              <img src="{{i.img?i.img:'assets/imgs/no-image.jpg'}}" loading="lazy">
+            </div>
+            <div class="card-info">
+              <p class="text-title">{{i.name}}</p>
+            </div>
+            <div class="card-footer">
+              
+              <button (click)="productDetail(i)"> Xem chi tiết </button>
+            </div>
+          </div>
+        </div>
+      }
     </div>
   </div>
 </div>

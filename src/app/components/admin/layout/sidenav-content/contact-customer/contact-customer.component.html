@@ -33,6 +33,20 @@
                         </div>
                         <div class="row">
                             <div class="col">
+                              <div class="mb-3">
+                                  <label for="productID" class="form-label">productID</label>
+                                  <input type="text" class="form-control" formControlName="productID"/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                  <label for="product_name" class="form-label">Tên mặt hàng</label>
+                                  <input type="text" class="form-control" formControlName="product_name"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
                               <label for="content" class="form-label">Nội dung quan tâm</label>
                               <textarea formControlName="content" class="form-control" rows="4"></textarea>
                             </div>
@@ -48,15 +62,14 @@
                     <span class="lable-card">Danh sách hàng</span>
                 </div>
                 <div class="card-body">
-                    <div class="mb-md-4">
+                    <div class="mb-md-2">
                         <form class="d-flex" role="search">
                             <input class="form-control me-2" type="search" placeholder="Tên khách hàng" (input)="searchCustomer($event)"/>
                         </form>
                     </div>
-                    <table class="table table-striped mt-md-3">
+                    <table class="table table-striped mt-md-2">
                         <thead class="table-dark text-center">
                           <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Tên khách hàng</th>
                             <th scope="col">Email</th>
                             <th scope="col">Số điện thoại</th>
@@ -67,7 +80,6 @@
                           @for (i of listFilter; track $index) {
                             @if(!i.is_del){
                               <tr role="button" (click)="viewInfoCustomer(i)">
-                                <th scope="row">{{listFilter.length - (listFilter.length - ($index  + 1))}}</th>
                                 <td>{{i.fullname}}</td>
                                 <td>{{i.email}}</td>
                                 <td>{{i.phone}}</td>
@@ -77,6 +89,17 @@
                           }
                         </tbody>
                     </table>
+                    <div>
+                        <button class="me-3" [disabled]="isPrevInfoCustomer"
+                            (click)="paginationInfoCustomer('prev')">
+                          <i class="bi bi-arrow-left-circle"></i>
+                        </button>
+                        
+                        <button class="me-3" [disabled]="isNextInfoCustomer" 
+                            (click)="paginationInfoCustomer('next')">
+                          <i class="bi bi-arrow-right-circle"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, AfterViewInit } from "@angular/core";
 
 @Component({
     selector: 'app-pagination',
@@ -8,13 +8,15 @@ import { Component, OnInit } from "@angular/core";
     providers:[]
 })
 
-export class PaginationComponent implements OnInit{
+export class PaginationComponent implements AfterViewInit{
 
     constructor() {
         
     }
 
-    ngOnInit(): void {
+    ngAfterViewInit(): void {
         
     }
+
+
 }

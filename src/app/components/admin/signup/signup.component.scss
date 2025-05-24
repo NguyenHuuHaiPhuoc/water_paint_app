@@ -1,13 +1,11 @@
 /* From Uiverse.io by akshat-patel28 */ 
 .form-container {
     width: 350px;
-    height: 500px;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
     box-sizing: border-box;
     padding: 20px 30px;
-    margin-top: 6rem;
   }
   
   .title {
@@ -26,12 +24,21 @@
     gap: 18px;
     margin-bottom: 15px;
   }
-  .form i{
-    top: 5rem;
-    left: 16rem;
+  .password-container {
+    position: relative;
+    // display: inline-block;
   }
+
+.password-container i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
   
   .input {
+    width: 100%;
     border-radius: 20px;
     border: 1px solid #c0c0c0;
     outline: 0 !important;

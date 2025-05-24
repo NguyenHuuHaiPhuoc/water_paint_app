@@ -7,6 +7,8 @@ import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire/compat';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -28,7 +30,22 @@ export const appConfig: ApplicationConfig = {
       AngularFireModule.initializeApp(firebaseConfig),
       AngularFireStorageModule,
       AngularFireDatabaseModule,
-      BrowserAnimationsModule
-    )
+      BrowserAnimationsModule,
+      OAuthModule.forRoot()
+    ),
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        lang: 'en',
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('744812297874344')
+          }
+        ],
+        onError: (err: any) => console.error(err)
+      } as SocialAuthServiceConfig
+    }
   ]
 };

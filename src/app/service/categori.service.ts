@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class CategoriService{
-    private apiURL = 'http://localhost:8080/api';
+    private apiURL = 'https://hdchemicals.vn:8444/api';
 
     constructor(
         private http: HttpClient
@@ -22,7 +22,7 @@ export class CategoriService{
     }
 
     public findByCateID(req:any):Observable<any> {
-        return this.http.post<any>(this.apiURL+"/find/catelog/lv2/by/catelog_id",req);
+        return this.http.get<any>(this.apiURL+"/find/catelog/lv2/by?catelog_id=" + req);
     }
 
     public createCattelogLV1(req:any):Observable<any> {

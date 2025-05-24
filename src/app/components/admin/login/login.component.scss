@@ -1,7 +1,6 @@
 /* From Uiverse.io by akshat-patel28 */ 
 .form-container {
     width: 350px;
-    height: 500px;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
@@ -15,8 +14,9 @@
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
           "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     margin: 10px 0 30px 0;
-    font-size: 28px;
+    font-size: 25px;
     font-weight: 800;
+    color: #008080;
   }
   
   .form {
@@ -101,7 +101,7 @@
     gap: 15px;
   }
   
-  .apple-login-button,
+  .facebook-login-button,
       .google-login-button {
     border-radius: 20px;
     box-sizing: border-box;
@@ -118,7 +118,7 @@
     gap: 5px;
   }
   
-  .apple-login-button {
+  .facebook-login-button {
     background-color: #000;
     color: #fff;
     border: 2px solid #000;
@@ -128,7 +128,7 @@
     border: 2px solid #747474;
   }
   
-  .apple-icon,
+  .facebook-icon,
       .google-icon {
     font-size: 18px;
     margin-bottom: 1px;

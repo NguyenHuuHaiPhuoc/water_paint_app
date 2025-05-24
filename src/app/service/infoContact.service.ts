@@ -5,12 +5,14 @@ import { Observable } from "rxjs";
 @Injectable()
 export class InfoContactService{
 
-    private api_url = "http://localhost:8080/api";
+    private api_url = "https://hdchemicals.vn:8443/api";
 
     constructor(private http: HttpClient){}
 
-    public findAllInfoContact():Observable<any>{
-        return this.http.get<any>(this.api_url+'/find/infocontacts');
+    public findAllInfoContact(page?:any, size?:any):Observable<any>{
+        const currentPage = page !== undefined ? '?page='+page : '';
+        const sizePage = size !== undefined ? '&size='+size : '';
+        return this.http.get<any>(this.api_url+'/find/infocontacts'+currentPage+sizePage);
     }
 
     public create(req:any):Observable<any> {

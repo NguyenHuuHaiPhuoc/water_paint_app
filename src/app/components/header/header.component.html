@@ -1,5 +1,5 @@
 <div class="d-md-flex " id="fixNav">
-  <div class="container justify-content-around justify-content-md-around">
+  <div class="container-fluid">
     <div class="logo">
       <a href="#">
         <img src="assets/imgs/logo.png" alt="No logo">
@@ -17,37 +17,22 @@
             <a class="nav-link" href="#">TRANG CHỦ</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="hdchemicals/gioi-thieu">GIỚI THIỆU</a>
-          </li>
-          <li class="nav-item dropdown">
-            @if(catelogs.length > 1){
-              <a class="nav-link dropdown-toggle" href="hdchemicals/san-pham" role="button" data-bs-toggle="dropdown">
-                SẢN PHẨM
-              </a>
-              <ul class="dropdown-menu">
-                @for (i of catelogs; track $index) {
-                  <li><a class="dropdown-item" [href]="'hdchemicals/danh-muc/'+i.id" >{{i.name}}</a></li>
-                }
-              </ul>
-            } @else{
-              @for (i of catelogs; track $index) {
-                <a class="nav-link text-uppercase" [href]="'hdchemicals/danh-muc/'+i.id" >{{i.name}}</a>
-              }
-            }
+            <a class="nav-link" href="gioi-thieu">GIỚI THIỆU</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="hdchemicals/tu-van-san-pham">TƯ VẤN SẢN PHẨM</a>
+            <a class="nav-link text-uppercase" href="san-pham">sản phẩm</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="hdchemicals/lien-he">LIÊN HỆ</a>
+            <a class="nav-link text-uppercase" href="tu-van-san-pham">GIỚI THIỆU SẢN PHẨM</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="lien-he">LIÊN HỆ</a>
           </li>
         </ul>
       </div>
     </div>
-      <!-- <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <button type="button" class="btn btn-outline-info">VN</button>
-        <button type="button" class="btn btn-outline-info">EN</button>
-      </div> -->
+      
     </nav>
   </div>
 </div>
+

@@ -1,6 +1,6 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="admin">HD Chemical</a>
+    <a class="navbar-brand ps-3" href="">HD Chemical</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="bi bi-list-task"></i></button>
     <!-- Navbar Search-->
@@ -16,10 +16,18 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                @if(isLogin){
+                @if(typeLogin && typeLogin != ''){
                     <li><a class="dropdown-item" href="#!">Cài đặt</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="admin" (click)="logout()">Đăng xuất</a></li>
+                    @if(typeLogin == 'google'){
+                        <li><a class="dropdown-item" href="admin" (click)="logoutGG()">Đăng xuất</a></li>
+                    }
+                    @if(typeLogin == 'facebook'){
+                        <li><a class="dropdown-item" href="admin" (click)="logoutFB()">Đăng xuất</a></li>
+                    }
+                    @if(typeLogin == 'app'){
+                        <li><a class="dropdown-item" href="admin" (click)="logoutAPP()">Đăng xuất</a></li>
+                    }
                 } @else {
                     <li><a class="dropdown-item" href="login">Đăng nhập</a></li>
                     <li><hr class="dropdown-divider" /></li>

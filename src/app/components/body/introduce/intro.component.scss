@@ -1,7 +1,6 @@
 .chemistry-img img{
-    width:300px;
-    height: 300px;
-    margin-left: 3rem;
+    width:400px;
+    height: 350px;
 }
 h2, p{
     color: #06465B;
@@ -24,11 +23,23 @@ h5{
 #landmarkCarousel{
     display: none;
 }
+.build img,.checked img,.cooperate img{
+    width: 80px;
+}
+.build p,.checked p,.cooperate p{
+    text-align: justify;
+    color: grey;
+}
 
 @media screen and (max-width: 768px) { /* 768px thường được dùng làm ngưỡng cho điện thoại */
+    .chemistry-img img{
+        width:100%;
+        height: 170px;
+    }
     .vision{
         width: 100%;
         height: 500px;
+        margin-top: 20px !important;
         background-size: contain;
         background-repeat: no-repeat;
     }

@@ -1,92 +1,32 @@
-<div class="mt-5 mt-md-0">
-    <h2 class="fs-3 fw-bold text-uppercase p-md-3">{{ catelogLV1.name }}</h2>
-    <p>Mực in vải là loại mực được sử dụng trong các kỹ thuật in trực tiếp lên bề mặt vải hoặc các sản
-         phẩm dệt may để tạo hình ảnh, họa tiết hoặc nội dung. Đây là thành phần quan trọng trong ngành
-          in ấn trên vải, đảm bảo độ bền màu, tính thẩm mỹ và sự an toàn cho người sử dụng.
-    </p>
-    <div class="info-category">
-        <div>
-            <h3>1. Các loại mực in vải phổ biến</h3>
-            <p>Trên thị trường hiện nay có rất nhiều loại mực in vải, mỗi loại đều có đặc tính và ứng dụng riêng. Dưới đây là một số
-                loại mực in phổ biến.
-            </p>
-            <img src="/assets/imgs/category/in-vai-lua.jpg" loading="lazy" alt="No image"/>
-            <h4 class="mt-md-3">1.1 Mực in hoạt tính(Reactive inks)</h4>
-            <p>Mực in hoạt tính là một trong những loại mực in phổ biến nhất trong ngành. 
-                Đặc biệt thường được dùng với chất liệu tự nhiên như cotton, lụa và len. 
-                Loại mực này phản ứng hóa học với sợi vải, giúp tạo ra những hình ảnh sắc nét, 
-                màu sắc tươi sáng và bền màu sau nhiều lần giặt. Nhờ tính chất này, 
-                mực hoạt tính thường được ứng dụng để sản xuất sản phẩm thời trang cao cấp.</p>
-            <h4 class="mt-md-3">1.2 Mực in axit(Acid inks)</h4>
-            <p>
-                Mực in axit chủ yếu được sử dụng cho vải lụa, len và lycra. 
-                Thường thấy trên đồ bơi và trang phục thể thao. Mực axit có khả năng thẩm thấu sâu vào vải, 
-                mang đến màu sắc rực rỡ với độ sáng, độ bám dính tốt. 
-                Đặc biệt, loại mực này có khả năng chống lại tác động của clo và nước biển. 
-                Và trở thành lựa chọn hoàn hảo cho sản phẩm tiếp xúc nhiều với nước​.
-            </p>
-            <h4 class="mt-md-3">1.3 Mực in thăng hoa(Sublimation inks)</h4>
-            <p>
-                Mực thăng hoa là lựa chọn lý tưởng cho vải polyester. 
-                Quy trình thăng hoa đòi hỏi mực chuyển từ dạng rắn sang dạng khí dưới tác động của nhiệt độ, áp suất cao. 
-                Sau đó thẩm thấu sâu vào sợi vải. Điều này giúp mực bám chắc vào vải mà không cần bước xử lý giặt hay làm khô. 
-                Đồng thời giảm thiểu tác động môi trường. Mực thăng hoa được ưa chuộng nhờ khả năng in ra họa tiết với màu sắc tươi sáng, 
-                bền màu và lâu phai sau nhiều lần giặt​.
-            </p>
-            <h4 class="mt-md-3">1.4 Mực in phân tán(Disperse inks)</h4>
-            <p>Mực phân tán thường được ứng dụng để in trực tiếp lên vải polyester. Trong quá trình in, mực in phân tán được phun lên bề mặt vải. 
-                Dưới tác dụng của nhiệt độ, áp suất cao, các hạt màu sẽ thẩm thấu vào sâu bên trong sợi vải và tạo liên kết bền vững. 
-                Sau quá trình làm nguội, màu sắc được khóa chặt vào sợi vải, mang đến sản phẩm có độ bền màu cao và khả năng chống phai tốt.</p>
-            <h4 class="mt-md-3">1.5 Mực in nước(Water-based inks)</h4>
-            <p>
-                Mực in nước là lựa chọn bền vững, an toàn cho ngành dệt may. Do loại mực này không chứa hóa chất độc hại. 
-                Vì thế loại mực này thường được in trên vải cotton hoặc các loại vải tự nhiên. 
-                Mực in nước dễ dàng thấm vào vải và không yêu cầu các bước xử lý phức tạp. 
-                Tuy nhiên, nhược điểm là độ bền màu thấp hơn, dễ bị phai sau nhiều lần giặt nếu không được xử lý đúng cách.
-            </p>
-            <h4 class="mt-md-3">1.6 Mực in UV(UV-curable inks)</h4>
-            <p>
-                Mực UV được ứng dụng rộng rãi trong quy trình in nhanh, yêu cầu độ bền cao. 
-                Đặc điểm nổi bật của loại mực này là khả năng khô ngay lập tức khi tiếp xúc với tia UV. Giúp tiết kiệm thời gian, năng lượng. 
-                Mực UV thường in trực tiếp lên loại vải không thấm nước như nhựa, polyester hoặc vật liệu tổng hợp khác​.
-            </p>
+<div class="container-fluid mt-4 mt-md-">
+    <div class="row mt-md-4 mx-md-5 list-product">
+        
+        @for(i of products; track $index){
+          <div class="col-6 col-md-3 mb-3">
+            <div class="card">
+              <div class="card-img">
+                <img [src]="i.img?i.img:'assets/imgs/no-image.png'" alt="No image" loading="lazy">
+              </div>
+              <div class="card-info">
+                <p class="text-title">{{i.name}} </p>
+              </div>
+              <div class="card-footer">
+                <button (click)="viewProductDetail(i)">
+                  Xem chi tiết
+                </button>
+              </div>
+            </div>
         </div>
-        <div>
-            <h3>2. Ứng dụng của mực in vải</h3>
-            <span>Màu in vải đóng vai trò thiết yếu trong hầu hết các lĩnh vực sản xuất và chế biến vải với
-                nhiều ứng dụng thực tế sau:
-            </span>
-            <ul>
-                <li>
-                    <b>Thời trang:</b> In hoa văn, họa tiết lên sản phẩm.
-                </li>
-                <li>
-                    <b>Quảng cáo:</b> In logo, slogan trên cờ, quần áo.
-                </li>
-                <li>
-                    <b>Trang trí nội thất:</b> In hình lên rèm cửa, gối, thảm, khăn trải bàn.
-                </li>
-                <li>
-                    <b>Nghệ thuật:</b> Tạo các sản phẩm độc đáo trên vải
-                </li>
-            </ul>
-            <img src="/assets/imgs/category/ung-dung-muc-in-vai.jpg" loading="lazy" alt="No image"/>
-        </div>
+        }
     </div>
-</div>
-@if(screenWidth <= 768) {
-    <button class="btn btn-secondary offcanvasCategory" [style.display]="visible?'block':'none'"
- type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-    <i class="bi bi-filter-circle fs-5"></i>
-</button>
-}
-
-<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <p>Try scrolling the rest of the page to see this option in action.</p>
-  </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" (click)="prev()">
+          <button>Previous</button>
+        </li>
+        <li class="page-item" (click)="next()">
+          <button>Next</button>
+        </li>
+      </ul>
+    </nav>
 </div>

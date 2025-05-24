@@ -2,10 +2,6 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <a class="nav-link" href="admin">
-                    <div class="sb-nav-link-icon"><i class="bi bi-person-lines-fill"></i></div>
-                    Bảng nhân viên
-                </a>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCompanies" aria-expanded="false" aria-controls="collapseCompanies">
                     <div class="sb-nav-link-icon"><i class="bi bi-buildings"></i></div>
                     Công ty
@@ -13,7 +9,7 @@
                 </a>
                 <div class="collapse" id="collapseCompanies" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="admin/thong-tin-cong-ty">Thông tin công ty</a>
+                        <a class="nav-link" href="admin">Thông tin công ty</a>
                         <a class="nav-link" href="admin/cap-nhat-gioi-thieu">Giới thiệu</a>
                     </nav>
                 </div>
@@ -24,10 +20,11 @@
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="admin/quan-ly-nhan-vien">Bảng nhân viên</a>
                         <a class="nav-link" href="admin/quan-ly-banner">Banner</a>
                         <a class="nav-link" href="admin/quan-ly-danh-muc">Danh mục</a>
                         <a class="nav-link" href="admin/quan-ly-san-pham">Sản phẩm</a>
-                        <a class="nav-link" href="admin/quan-ly-thong-tin-tu-van">Thông tin tư vấn</a>
+                        <!-- <a class="nav-link" href="admin/quan-ly-thong-tin-tu-van">Thông tin tư vấn</a> -->
                         <a class="nav-link" href="admin/quan-ly-thong-tin-khach-hang">Thông tin liên hệ khách hàng</a>
                     </nav>
                 </div>
@@ -45,28 +42,18 @@
                         <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="admin/quan-ly-phan-quyen-nhan-su">Nhân sự</a>
-                                <a class="nav-link" href="register.html">Register</a>
-                                <a class="nav-link" href="password.html">Forgot Password</a>
+                                <a class="nav-link" href="admin/doi-mat-khau">Đổi mật khẩu</a>
                             </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                            Error
-                            <div class="sb-sidenav-collapse-arrow"><i class="bi bi-caret-down-fill"></i></div>
-                        </a>
-                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="401.html">401 Page</a>
-                                <a class="nav-link" href="404.html">404 Page</a>
-                                <a class="nav-link" href="500.html">500 Page</a>
-                            </nav>
+
                         </div>
                     </nav>
+                    <a class="nav-link ms-md-4" href="admin/tao-tai-khoan">Tạo tài khoản</a>
                 </div>
                 <!-- <div class="sb-sidenav-menu-heading">Addons</div> -->
-                <a class="nav-link" href="charts.html">
+                <!-- <a class="nav-link" href="charts.html">
                     <div class="sb-nav-link-icon"><i class="bi bi-graph-up-arrow"></i></div>
                     Thống kê doanh thu
-                </a>
+                </a> -->
             </div>
         </div>
     </nav>
